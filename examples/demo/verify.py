@@ -101,12 +101,11 @@ PLAN_EXCLUSION = (
     "USE TEMP B-TREE FOR ORDER BY"
 )
 PLAN_MASKING = "SCAN d\nUSE TEMP B-TREE FOR ORDER BY"
-DRILL_ROWS = [
-    ("vector+keyword search", True, False, 0.0799),
-    ("result cache", True, False, 0.0001),
-    ("prompt context", True, False, 0.0002),
-    ("aggregates", True, False, 0.0),
-]
+#: The drill's seconds are wall-clock and differ every run, so the page prints
+#: the surfaces and the bound rather than a constant. Only those are asserted.
+DRILL_SURFACES = ["vector+keyword search", "result cache", "prompt context",
+                  "aggregates", "stratum membership"]
+DRILL_TARGET_SECONDS = 5.0
 
 QUERY = ("Larkspur, as the ward has called them since childhood, is 48 and "
          "still working as a salt panner on the Aldermoor shorefr")
@@ -156,25 +155,35 @@ def tier_exhibit(ex: dict) -> None:
     check("exhibit", "measured at", ex["when"], "2026-08-04T00:00:00+00:00")
     check("exhibit", "patients", c["patients"], 200)
     check("exhibit", "documents", c["documents"], 1000)
-    check("exhibit", "consented subjects", c["consented_subjects"], 79)
+    check("exhibit", "consented subjects", c["consented_subjects"], 80)
     check("exhibit", "non-consented subjects", c["non_consented_subjects"],
           120)
+    check("exhibit", "the two account for every patient",
+          c["consented_subjects"] + c["non_consented_subjects"],
+          c["patients"])
 
     check("exhibit", "probes run, masking", m["probes_run"], 113)
     check("exhibit", "probes run, exclusion", e["probes_run"], 113)
-    check("exhibit", "total leaks, masking", m["total_leaks"], 537)
+    check("exhibit", "total leaks, masking", m["total_leaks"], 535)
     check("exhibit", "total leaks, exclusion", e["total_leaks"], 0)
-    check("exhibit", "leak records present, masking", len(m["leaks"]), 537)
+    check("exhibit", "leak records present, masking", len(m["leaks"]), 535)
     check("exhibit", "leak records present, exclusion", len(e["leaks"]), 0)
     check("exhibit", "by_vector sums to the total",
           sum(m["by_vector"].values()), m["total_leaks"])
 
     for vector, count in (("narrative", 489), ("oracle", 30),
-                          ("small_cell", 16), ("count", 2)):
+                          ("small_cell", 16)):
         check("exhibit", f"{vector} leaks, masking",
               m["by_vector"].get(vector, 0), count)
         check("exhibit", f"{vector} leaks, exclusion",
               e["by_vector"].get(vector, 0), 0)
+    # The count vector is gone rather than zero: the probe no longer reports a
+    # shortfall it caused itself by giving up at its own page cap.
+    check("exhibit", "vectors recorded, masking", sorted(m["by_vector"]),
+          ["narrative", "oracle", "small_cell"])
+    check("exhibit", "count-vector leaks recorded",
+          [x for x in m["leaks"] if x["vector"] in ("count", "pagination")],
+          [])
 
     narrative = [x for x in m["leaks"] if x["vector"] == "narrative"]
     check("exhibit", "narrative quote, verbatim", narrative[0]["evidence"],
@@ -219,9 +228,6 @@ def tier_exhibit(ex: dict) -> None:
     check("exhibit", "strata of exactly one person",
           sum(1 for x in cells if "has 1 member(s)" in x["evidence"]), 5)
 
-    counts = [x["evidence"] for x in m["leaks"] if x["vector"] == "count"]
-    check("exhibit", "count-channel evidence, verbatim", counts, COUNT_QUOTES)
-
     check("exhibit", "query plan, exclusion", ex["query_plan"]["exclusion"],
           PLAN_EXCLUSION)
     check("exhibit", "query plan, masking", ex["query_plan"]["masking"],
@@ -231,20 +237,26 @@ def tier_exhibit(ex: dict) -> None:
     check("exhibit", "drill subject", d["subject"], "P001")
     check("exhibit", "drill purpose", d["purpose"], "direct_care")
     check("exhibit", "every surface dark", d["all_dark"], True)
-    check("exhibit", "worst surface, seconds", d["worst_seconds"], 0.0799)
-    check("exhibit", "worst surface, printed to 2 dp",
-          f"{d['worst_seconds']:.2f}", "0.08")
+    check("exhibit", "drill surfaces measured",
+          [s["surface"] for s in d["surfaces"]], DRILL_SURFACES)
+    check("exhibit", "every surface was visible before the revocation",
+          [s["visible_before"] for s in d["surfaces"]], [True] * 5)
+    check("exhibit", "every surface was dark after it",
+          [s["visible_after"] for s in d["surfaces"]], [False] * 5)
+    check("exhibit", "every drill surface counted as a pass",
+          all(s["ok"] for s in d["surfaces"]), True)
+    # Seconds are wall-clock and differ every run, so the bound is asserted
+    # and the value is not.
     check("exhibit", "worst surface is the slowest measured surface",
           d["worst_seconds"],
           max(s["seconds_to_dark"] for s in d["surfaces"]))
     check("exhibit", "worst surface is inside the 5 s target",
-          d["worst_seconds"] < 5.0, True)
-    check("exhibit", "drill total, seconds", d["total_seconds"], 0.16)
-    check("exhibit", "drill surfaces",
-          [(s["surface"], s["visible_before"], s["visible_after"],
-            s["seconds_to_dark"]) for s in d["surfaces"]], DRILL_ROWS)
-    check("exhibit", "every drill surface counted as a pass",
-          all(s["ok"] for s in d["surfaces"]), True)
+          d["worst_seconds"] < DRILL_TARGET_SECONDS, True)
+    check("exhibit", "every surface is inside the 5 s target",
+          all(s["seconds_to_dark"] < DRILL_TARGET_SECONDS
+              for s in d["surfaces"]), True)
+    check("exhibit", "the drill as a whole is inside the target",
+          d["total_seconds"] < DRILL_TARGET_SECONDS, True)
 
 
 def tier_manifest(ex: dict, manifest_path: Path) -> None:
@@ -348,6 +360,8 @@ def tier_live(ex: dict) -> None:
     check("live", "non-consented at the measured instant", len(hidden), 120)
     check("live", "the two partition the corpus",
           len(consented) + len(hidden), ex["counts"]["patients"])
+    check("live", "the exhibit records the pre-drill consented set",
+          ex["counts"]["consented_subjects"], len(consented))
     check("live", "P001 is consented before the drill", "P001" in consented,
           True)
 
@@ -455,10 +469,14 @@ def tier_live(ex: dict) -> None:
     check("live", "'follow up' count and page walk, exclusion",
           walked[("exclusion", "follow up")], (248, 248, False))
 
+    # The count the exhibit used to report. Taking the snapshot after the
+    # drill's own revocation is what produced 79 against 120, and the fix is
+    # that the exhibit no longer reads the store at this point.
     store.revoke("P001", at=when)
-    check("live", "consented after the drill revoked P001",
-          len(store.consented_subjects(purpose, when)),
-          ex["counts"]["consented_subjects"])
+    check("live", "consented after the drill revokes P001",
+          len(store.consented_subjects(purpose, when)), 79)
+    check("live", "which is not what the exhibit reports",
+          ex["counts"]["consented_subjects"] == 79, False)
 
 
 def tier_repo() -> None:
@@ -485,6 +503,14 @@ def tier_repo() -> None:
         return
     check("repo", "tests", sum(counted.values()), 70)
     check("repo", "sabotage cases", counted.get("test_sabotage.py", 0), 9)
+
+    probes = ROOT / "src" / "consent_gate" / "probes.py"
+    if probes.exists():
+        text = probes.read_text(encoding="utf-8")
+        check("repo", "the page-walk cap is named and bounded",
+              "MAX_PAGES = 52" in text, True)
+    else:
+        skip("repo", "the page-walk cap is named and bounded", f"no {probes}")
 
 
 def _collected_tests() -> dict[str, int] | None:

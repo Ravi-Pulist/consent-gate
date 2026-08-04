@@ -13,13 +13,13 @@ configurations.
 |---|---|---|
 | one query, two configurations | the same query returns 4 non-consented records under masking and 0 under exclusion, with counts of 533 and 204 | live replay of the recorded query through `MaskingGate` and `QueryGate` |
 | what the model would have been handed | the masked document, with name, MRN, phone, email and address replaced, still names one person | live replay; the body text is also at `exhibits/exhibit.json` `masking.leaks[0].evidence` |
-| the measured difference | 537 leaks under masking, 0 under exclusion, across 113 probes | `exhibits/exhibit.json` `masking.by_vector`, `exclusion.by_vector` |
+| the measured difference | 535 leaks under masking, 0 under exclusion, across 113 probes | `exhibits/exhibit.json` `masking.by_vector`, `exclusion.by_vector` |
 | the narrative leak | 489 leak events over 60 probes, 59 documents, 26 people, quoted | `exhibits/exhibit.json` narrative leaks |
 | the search oracle | under exclusion a withdrawn record and a record that never existed share one SHA-256 response fingerprint | live replay of `manifest.oracle_pairs[0]`; totals from the exhibit |
 | why post-filtering does not work | counts, scores and pagination each leak | `src/consent_gate/gate.py` docstring, `tests/test_sabotage.py` |
 | the query plan | the consent predicate is inside the scan | `exhibits/exhibit.json` `query_plan` |
-| revocation, measured | every surface dark, worst surface 0.0799 s against a 5 s target | `exhibits/exhibit.json` `revocation_drill` |
-| what this does not close | the README's not-verified list, plus three defects found while building this page | `README.md`, plus `verify.py` |
+| revocation, measured | five surfaces, all visible before the revocation and dark after it, worst surface 0.0839 s against a 5 s target | `exhibits/exhibit.json` `revocation_drill` |
+| what this does not close, and what was fixed | the project README's not-verified list, plus three defects found while building this page and since fixed in the source | `README.md`, plus `verify.py` |
 
 Nothing on the page was typed from memory. `verify.py` re-derives every figure
 and prints a pass/fail tally.
@@ -64,17 +64,22 @@ quoted evidence, ranked hit lists, response fingerprints and query plans.
 The revocation drill's seconds are wall-clock measurements and will differ on
 your machine. Measured here by running the four commands above into a scratch
 copy of the repository: all four corpus files came back byte-identical, and the
-re-run exhibit differed from the shipped one in exactly three fields, all of
-them drill timings (`worst_seconds` 0.0799 to 0.0682, `total_seconds` 0.16 to
-0.1444, and the same worst figure inside `surfaces[0]`). Every leak, quote,
-count, fingerprint and query plan was identical. Those second-run timings are
-recorded here and nowhere else, so treat them as one observation rather than as
-a published figure.
+re-run exhibit differed from the shipped one in 7 of its 2,723 fields, every one
+of them a drill timing (`worst_seconds` 0.0839 to 0.0710, `total_seconds` 0.1875
+to 0.1542, and the five `seconds_to_dark`). Every leak, quote, count,
+fingerprint and query plan was identical. Those second-run timings are recorded
+here and nowhere else, so treat them as one observation rather than as a
+published figure.
 
-`verify.py` reads the exhibit copy in this folder by default, so re-running the
-exhibit in the repository does not change what it checks. Point it at a fresh
-run with `--exhibits ../../exhibits` and the drill timings are the fields
-expected to disagree.
+Because of that, `verify.py` does not assert any drill timing. It asserts the
+bound the page claims (every surface inside the 5 s target) and the states that
+make the drill a measurement at all: five named surfaces, each visible before
+the revocation and dark after it. The seconds printed in the page's drill table
+are read from the exhibit copy in this folder and are not otherwise checked.
+
+`verify.py` reads that copy by default, so re-running the exhibit in the
+repository does not change what it checks. Point it at a fresh run with
+`--exhibits ../../exhibits` and it still passes, because no timing is asserted.
 
 ## verify.py
 
@@ -96,13 +101,35 @@ Each check names its source:
 - `live` rebuilds the store and index from `corpus/data` and replays the demo
   query, the oracle pair and the page walks through both gates. Reports SKIP if
   `src/` or `corpus/data/` are absent.
-- `repo` counts what pytest collects out of `tests/`.
+- `repo` counts what pytest collects out of `tests/` and checks that the page
+  walk's limit is the named `MAX_PAGES = 52`.
 
 It exits 0 when every check that ran passed, and lists what it could not check:
 byte-reproducibility of the corpus, Postgres and pgvector behaviour, and the
 response-time channel.
 
-Current state of this checkout: 108 of 108 checks pass, 0 skipped.
+Current state of this checkout: 112 of 112 checks pass, 0 skipped.
+
+## Three defects, found and fixed
+
+The page ends with them because they are the most useful thing on it. All three
+were in the measurement apparatus rather than in the gate.
+
+1. **The corpus split did not add up.** The exhibit reported 79 consented and
+   120 not against 200 patients, because the consented count was read after the
+   revocation drill had revoked `P001`. The snapshot is now taken before the
+   drill: 80 and 120. No leak figure moved, since the probes always ran against
+   the pre-drill split.
+2. **Two of the 537 leaks were manufactured by the probe.** The count-channel
+   leaks were a gap the page walk created by stopping at its own limit, reported
+   as though records had been filtered out after being counted. The limit is now
+   a named `MAX_PAGES = 52` and a walk that ends that way reports nothing. The
+   masking total is 535. The count channel itself is unaffected: masking reports
+   847 matches for `review` where exclusion reports 326.
+3. **One drill surface measured nothing.** The drill ran without a stratum, so
+   the `aggregates` surface returned false without consulting the gate. It now
+   passes the subject's stratum and reports five surfaces, all of them visible
+   before the revocation and dark after it.
 
 ## Synthetic data
 

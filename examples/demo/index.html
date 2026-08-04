@@ -183,7 +183,7 @@ footer { border-top: 1px solid var(--rule); margin-top: 3.5rem; padding-top: 1.5
 
 <div class="kpis">
   <div class="kpi"><div class="label">leaks, masking</div>
-    <div class="value">537</div><div class="of">113 probes</div></div>
+    <div class="value">535</div><div class="of">113 probes</div></div>
   <div class="kpi"><div class="label">leaks, exclusion</div>
     <div class="value">0</div><div class="of">same probes, same corpus</div></div>
   <div class="kpi"><div class="label">revocation, worst surface</div>
@@ -298,15 +298,16 @@ measured under exclusion that was not measured under masking first.</p>
       <tr><td>narrative</td><td class="n">489</td><td class="n">0</td><td>a returned document whose subject has no active consent</td></tr>
       <tr><td>oracle</td><td class="n">30</td><td class="n">0</td><td>response fingerprint for a present token against an absent token</td></tr>
       <tr><td>small cell</td><td class="n">16</td><td class="n">0</td><td>membership of a counted stratum</td></tr>
-      <tr><td>count / pagination</td><td class="n">2</td><td class="n">0</td><td>reported total against what paging can reach</td></tr>
-      <tr><td><strong>total leaks</strong></td><td class="n"><strong>537</strong></td><td class="n"><strong>0</strong></td><td>113 probes each side</td></tr>
+      <tr><td>count / pagination</td><td class="n">0</td><td class="n">0</td><td>reported total against what paging can reach</td></tr>
+      <tr><td><strong>total leaks</strong></td><td class="n"><strong>535</strong></td><td class="n"><strong>0</strong></td><td>113 probes each side</td></tr>
     </tbody>
   </table>
 </div>
 <p class="tfoot">Corpus: 200 patients, 1,000 documents. For purpose <code>direct_care</code>
-at 2026-08-04T00:00:00+00:00, 79 subjects are consented and 120 are not. Those two
-figures are one apart from the corpus total for a reason recorded under
-<a href="#limits">what this does not close</a>.</p>
+at 2026-08-04T00:00:00+00:00, 80 subjects are consented and 120 are not. The
+count/pagination probe still runs on both sides and now reports nothing: the two
+leaks it used to report were artefacts of its own page-walk limit. See
+<a href="#limits">defects found and fixed</a>.</p>
 <p class="src">exhibits/exhibit.json: masking.by_vector, exclusion.by_vector, counts. Probe counts re-derived from corpus/data/manifest.json: 60 traps + 20 small cells + 30 oracle pairs + 3 paging queries = 113.</p>
 
 <p>The masking baseline is not a straw man. It redacts every direct identifier at
@@ -443,22 +444,25 @@ unreadable rather than merely scheduled for eviction.</p>
   <table>
     <thead><tr><th>surface</th><th>visible before</th><th>visible after</th><th class="n">seconds to dark</th></tr></thead>
     <tbody>
-      <tr><td>vector + keyword search</td><td>yes</td><td>no</td><td class="n">0.0799</td></tr>
-      <tr><td>result cache</td><td>yes</td><td>no</td><td class="n">0.0001</td></tr>
-      <tr><td>prompt context</td><td>yes</td><td>no</td><td class="n">0.0002</td></tr>
-      <tr><td>aggregates</td><td>yes</td><td>no</td><td class="n">0.0000</td></tr>
+      <tr><td>vector + keyword search</td><td>yes</td><td>no</td><td class="n">0.0839</td></tr>
+      <tr><td>result cache</td><td>yes</td><td>no</td><td class="n">0.0002</td></tr>
+      <tr><td>prompt context</td><td>yes</td><td>no</td><td class="n">0.0003</td></tr>
+      <tr><td>aggregates</td><td>yes</td><td>no</td><td class="n">0.0033</td></tr>
+      <tr><td>stratum membership</td><td>yes</td><td>no</td><td class="n">0.0033</td></tr>
     </tbody>
   </table>
 </div>
-<p class="tfoot">Every surface dark. Worst surface 0.0799 s against a 5 s target;
-0.16 s for the whole drill. A surface that was never visible before revocation
-proves nothing about revocation, so it is not counted as a pass. See the note on
-the aggregates row under <a href="#limits">what this does not close</a>.</p>
-<p class="src">exhibits/exhibit.json revocation_drill. Timings are wall-clock on the machine that ran the exhibit and will differ on yours.</p>
+<p class="tfoot">Five surfaces, every one of them visible before the revocation and
+dark after it. Worst surface 0.0839 s against a 5 s target; 0.1875 s for the whole
+drill. A surface that was never visible before revocation proves nothing about
+revocation, so it is not counted as a pass, which is why the visible-before column
+is in the table rather than assumed.</p>
+<p class="src">exhibits/exhibit.json revocation_drill, as shipped in this folder. The seconds are wall-clock on the machine that ran the exhibit and change on every run, so verify.py asserts the bound (every surface inside the 5 s target) and the before/after states, not the values.</p>
 
-<h2 id="limits">What this does not close</h2>
-<p>Three limits carried over from the project README, and three things found while
-building this page. Each names the file that records it.</p>
+<h2 id="limits">What this does not close, and what was fixed</h2>
+<p>The limits carried over from the project README, then three defects found while
+building this page and since fixed in the source. Each names the file that records
+it.</p>
 
 <h3>Carried from the README</h3>
 <ul>
@@ -484,31 +488,45 @@ building this page. Each names the file that records it.</p>
 </ul>
 <p class="src">README.md, Not verified. Also exhibits/exhibit.md, What this does not close.</p>
 
-<h3>Found while building this page</h3>
+<h3>Three defects found while building this page, and fixed</h3>
+<p>All three were in the measurement apparatus rather than in the gate, which is
+the more embarrassing place for them to be: an exhibit that miscounts is an
+exhibit that cannot be used as evidence. The figures above are from the run after
+the fixes.</p>
 <ul>
-  <li><strong>79 consented and 120 not do not add to 200.</strong> The exhibit
-  takes its consented count after the revocation drill has already revoked
-  <code>P001</code>, while the non-consented set was computed before it. At the
-  measured instant the split is 80 and 120. The leak measurements used the
-  pre-drill split, so they are unaffected; the reported count is one low.
-  <span class="note">src/consent_gate/exhibit.py, counts computed after
-  run_drill; src/consent_gate/revocation.py, store.revoke inside the drill.
-  Re-derived by verify.py.</span></li>
-  <li><strong>The two count-channel leaks are attributed to the wrong cause.</strong>
-  The evidence string says the gap is the set filtered out after being counted. In
-  this run the page walk stopped at the probe's 52-page limit: masking reports 847
-  matches for <code>review</code> and 520 were walked before the cap, against 326
-  reported and 326 walked under exclusion. The channel is real, since 847 is a
-  total over everyone and 326 is not, but the sentence describing it is wrong.
-  <span class="note">src/consent_gate/probes.py, probe_pagination page cap.
-  Re-derived by verify.py.</span></li>
-  <li><strong>The aggregates row of the drill is not a membership test.</strong>
-  The drill was called without a stratum, so that surface's check returns false
-  without consulting the gate and its 0.0000 s measures nothing. The three other
-  surfaces are real measurements, and the worst-surface figure comes from the
-  search surface, so the headline is unaffected.
-  <span class="note">src/consent_gate/revocation.py, the aggregates measure with
-  stratum unset.</span></li>
+  <li><strong>The corpus split did not add up.</strong> The exhibit reported 79
+  consented and 120 not, against 200 patients, because it read the consented count
+  after the revocation drill had already revoked <code>P001</code> while the
+  non-consented set was computed before it. The drill's own revocation was leaking
+  into the corpus description. The snapshot is now taken before the drill and the
+  split reads 80 and 120. The leak measurements always used the pre-drill split,
+  so no leak figure moved.
+  <span class="note">Fixed in src/consent_gate/exhibit.py. verify.py re-derives
+  both halves from the store and checks they account for all 200 patients.</span></li>
+
+  <li><strong>Two of the 537 leaks were manufactured by the probe.</strong> The
+  count-channel leaks reported a gap between the total and what paging could
+  reach, and attributed it to records filtered out after being counted. The real
+  cause was the probe giving up at its own page-walk limit: masking reports 847
+  matches for <code>review</code> and the walk stopped after 520, while exclusion
+  reports 326 and reaches all 326. The limit is now a named
+  <code>MAX_PAGES = 52</code> and a walk that ends because the probe stopped no
+  longer reports a leak. <strong>The masking total is 535, not 537.</strong> The
+  count channel itself is untouched and still real: 847 is a total over everyone
+  and 326 is not.
+  <span class="note">Fixed in src/consent_gate/probes.py. verify.py checks the
+  exhibit records no count-vector leak and re-derives 847, 520, 326 from a live
+  page walk.</span></li>
+
+  <li><strong>One drill surface measured nothing.</strong> The drill ran without a
+  stratum, so the <code>aggregates</code> surface returned false without
+  consulting the gate: a row in a table of measurements that had measured
+  nothing. The drill now passes the subject's stratum and reports five surfaces,
+  every one of them visible before the revocation and dark after it. The
+  worst-surface figure came from the search surface then and comes from it now.
+  <span class="note">Fixed in src/consent_gate/revocation.py and exhibit.py.
+  verify.py checks all five surfaces have visible-before true and visible-after
+  false.</span></li>
 </ul>
 
 <h2>Reproduce it</h2>
@@ -527,9 +545,9 @@ python examples/demo/verify.py</pre>
 (<code>482304f5...</code>). The leak counts, query plans and fingerprints are
 deterministic too: running all four commands into a scratch copy of this
 repository reproduced the corpus byte for byte, and the re-run exhibit differed
-from the published one in three fields, all of them revocation timings. Those
-are wall-clock measurements and will differ on your machine; everything else on
-this page will not.</p>
+from the published one in 7 of its 2,723 fields, every one of them a revocation
+timing. Those are wall-clock measurements and will differ on your machine;
+everything else on this page will not.</p>
 
 <p>The exhibit exits <code>0</code> if exclusion leaked nothing, <code>1</code> if
 it leaked, and <code>2</code> if it could not run, including the case where the
@@ -539,7 +557,7 @@ and a green run would be green for the wrong reason.</p>
 <p><code>examples/demo/verify.py</code> re-derives every figure on this page from
 <code>exhibits/exhibit.json</code>, <code>corpus/data/manifest.json</code>, a live
 replay of the query through both gates, and the test collection, then prints a
-pass/fail tally. It reports 108 of 108 checks passing on this checkout, and lists
+pass/fail tally. It reports 112 of 112 checks passing on this checkout, and lists
 the three figures it cannot check.</p>
 
 <footer>
