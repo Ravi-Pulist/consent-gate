@@ -1,0 +1,1925 @@
+{
+  "manifest_version": "1.0",
+  "seed": 20260804,
+  "now": "2026-08-04T00:00:00+00:00",
+  "synthetic_only": true,
+  "generator_sha256": "482304f5aaa31fa09fe98f540d929a291952de8d857097bd7dd4ae833a18c450",
+  "counts": {
+    "patients": 200,
+    "documents": 1000,
+    "consents": 170
+  },
+  "consent_states": {
+    "active_direct_care": 80,
+    "active_research": 30,
+    "expired": 20,
+    "revoked": 30,
+    "never": 30,
+    "future": 10
+  },
+  "narrative_traps": [
+    {
+      "doc_id": "D0003",
+      "patient_id": "P001",
+      "span": [
+        298,
+        422
+      ],
+      "consent_state": "active_direct_care",
+      "quasi_identifiers": [
+        "age",
+        "occupation",
+        "place",
+        "nickname"
+      ],
+      "nickname": "Larkspur",
+      "occupation": "salt panner",
+      "place": "Aldermoor",
+      "age": 48
+    },
+    {
+      "doc_id": "D0004",
+      "patient_id": "P001",
+      "span": [
+        297,
+        421
+      ],
+      "consent_state": "active_direct_care",
+      "quasi_identifiers": [
+        "age",
+        "occupation",
+        "place",
+        "nickname"
+      ],
+      "nickname": "Larkspur",
+      "occupation": "salt panner",
+      "place": "Aldermoor",
+      "age": 48
+    },
+    {
+      "doc_id": "D0028",
+      "patient_id": "P006",
+      "span": [
+        302,
+        416
+      ],
+      "consent_state": "active_research",
+      "quasi_identifiers": [
+        "age",
+        "occupation",
+        "place",
+        "nickname"
+      ],
+      "nickname": "Coble",
+      "occupation": "wheelwright",
+      "place": "Aldermoor",
+      "age": 75
+    },
+    {
+      "doc_id": "D0029",
+      "patient_id": "P006",
+      "span": [
+        302,
+        416
+      ],
+      "consent_state": "active_research",
+      "quasi_identifiers": [
+        "age",
+        "occupation",
+        "place",
+        "nickname"
+      ],
+      "nickname": "Coble",
+      "occupation": "wheelwright",
+      "place": "Aldermoor",
+      "age": 75
+    },
+    {
+      "doc_id": "D0068",
+      "patient_id": "P014",
+      "span": [
+        293,
+        417
+      ],
+      "consent_state": "revoked",
+      "quasi_identifiers": [
+        "age",
+        "occupation",
+        "place",
+        "nickname"
+      ],
+      "nickname": "Kettle",
+      "occupation": "reed cutter",
+      "place": "Bramleigh",
+      "age": 28
+    },
+    {
+      "doc_id": "D0069",
+      "patient_id": "P014",
+      "span": [
+        317,
+        441
+      ],
+      "consent_state": "revoked",
+      "quasi_identifiers": [
+        "age",
+        "occupation",
+        "place",
+        "nickname"
+      ],
+      "nickname": "Kettle",
+      "occupation": "reed cutter",
+      "place": "Bramleigh",
+      "age": 28
+    },
+    {
+      "doc_id": "D0071",
+      "patient_id": "P014",
+      "span": [
+        300,
+        424
+      ],
+      "consent_state": "revoked",
+      "quasi_identifiers": [
+        "age",
+        "occupation",
+        "place",
+        "nickname"
+      ],
+      "nickname": "Kettle",
+      "occupation": "reed cutter",
+      "place": "Bramleigh",
+      "age": 28
+    },
+    {
+      "doc_id": "D0100",
+      "patient_id": "P020",
+      "span": [
+        302,
+        417
+      ],
+      "consent_state": "active_direct_care",
+      "quasi_identifiers": [
+        "age",
+        "occupation",
+        "place",
+        "nickname"
+      ],
+      "nickname": "Sparrow",
+      "occupation": "glassblower",
+      "place": "Dunhollow",
+      "age": 56
+    },
+    {
+      "doc_id": "D0103",
+      "patient_id": "P020",
+      "span": [
+        286,
+        401
+      ],
+      "consent_state": "active_direct_care",
+      "quasi_identifiers": [
+        "age",
+        "occupation",
+        "place",
+        "nickname"
+      ],
+      "nickname": "Sparrow",
+      "occupation": "glassblower",
+      "place": "Dunhollow",
+      "age": 56
+    },
+    {
+      "doc_id": "D0183",
+      "patient_id": "P036",
+      "span": [
+        279,
+        395
+      ],
+      "consent_state": "revoked",
+      "quasi_identifiers": [
+        "age",
+        "occupation",
+        "place",
+        "nickname"
+      ],
+      "nickname": "Mudlark",
+      "occupation": "puppet maker",
+      "place": "Bramleigh",
+      "age": 39
+    },
+    {
+      "doc_id": "D0186",
+      "patient_id": "P036",
+      "span": [
+        295,
+        411
+      ],
+      "consent_state": "revoked",
+      "quasi_identifiers": [
+        "age",
+        "occupation",
+        "place",
+        "nickname"
+      ],
+      "nickname": "Mudlark",
+      "occupation": "puppet maker",
+      "place": "Bramleigh",
+      "age": 39
+    },
+    {
+      "doc_id": "D0245",
+      "patient_id": "P049",
+      "span": [
+        294,
+        420
+      ],
+      "consent_state": "active_research",
+      "quasi_identifiers": [
+        "age",
+        "occupation",
+        "place",
+        "nickname"
+      ],
+      "nickname": "Pitch",
+      "occupation": "wherry skipper",
+      "place": "Aldermoor",
+      "age": 66
+    },
+    {
+      "doc_id": "D0246",
+      "patient_id": "P049",
+      "span": [
+        306,
+        432
+      ],
+      "consent_state": "active_research",
+      "quasi_identifiers": [
+        "age",
+        "occupation",
+        "place",
+        "nickname"
+      ],
+      "nickname": "Pitch",
+      "occupation": "wherry skipper",
+      "place": "Aldermoor",
+      "age": 66
+    },
+    {
+      "doc_id": "D0247",
+      "patient_id": "P049",
+      "span": [
+        308,
+        434
+      ],
+      "consent_state": "active_research",
+      "quasi_identifiers": [
+        "age",
+        "occupation",
+        "place",
+        "nickname"
+      ],
+      "nickname": "Pitch",
+      "occupation": "wherry skipper",
+      "place": "Aldermoor",
+      "age": 66
+    },
+    {
+      "doc_id": "D0301",
+      "patient_id": "P059",
+      "span": [
+        294,
+        408
+      ],
+      "consent_state": "expired",
+      "quasi_identifiers": [
+        "age",
+        "occupation",
+        "place",
+        "nickname"
+      ],
+      "nickname": "Rook",
+      "occupation": "basket weaver",
+      "place": "Bramleigh",
+      "age": 46
+    },
+    {
+      "doc_id": "D0303",
+      "patient_id": "P059",
+      "span": [
+        317,
+        431
+      ],
+      "consent_state": "expired",
+      "quasi_identifiers": [
+        "age",
+        "occupation",
+        "place",
+        "nickname"
+      ],
+      "nickname": "Rook",
+      "occupation": "basket weaver",
+      "place": "Bramleigh",
+      "age": 46
+    },
+    {
+      "doc_id": "D0345",
+      "patient_id": "P068",
+      "span": [
+        289,
+        409
+      ],
+      "consent_state": "never",
+      "quasi_identifiers": [
+        "age",
+        "occupation",
+        "place",
+        "nickname"
+      ],
+      "nickname": "Pike",
+      "occupation": "sailmaker",
+      "place": "Redwyn Isle",
+      "age": 85
+    },
+    {
+      "doc_id": "D0346",
+      "patient_id": "P068",
+      "span": [
+        304,
+        424
+      ],
+      "consent_state": "never",
+      "quasi_identifiers": [
+        "age",
+        "occupation",
+        "place",
+        "nickname"
+      ],
+      "nickname": "Pike",
+      "occupation": "sailmaker",
+      "place": "Redwyn Isle",
+      "age": 85
+    },
+    {
+      "doc_id": "D0365",
+      "patient_id": "P071",
+      "span": [
+        293,
+        419
+      ],
+      "consent_state": "never",
+      "quasi_identifiers": [
+        "age",
+        "occupation",
+        "place",
+        "nickname"
+      ],
+      "nickname": "Bellows",
+      "occupation": "peat cutter",
+      "place": "Cinderfell",
+      "age": 70
+    },
+    {
+      "doc_id": "D0366",
+      "patient_id": "P071",
+      "span": [
+        292,
+        418
+      ],
+      "consent_state": "never",
+      "quasi_identifiers": [
+        "age",
+        "occupation",
+        "place",
+        "nickname"
+      ],
+      "nickname": "Bellows",
+      "occupation": "peat cutter",
+      "place": "Cinderfell",
+      "age": 70
+    },
+    {
+      "doc_id": "D0368",
+      "patient_id": "P071",
+      "span": [
+        318,
+        444
+      ],
+      "consent_state": "never",
+      "quasi_identifiers": [
+        "age",
+        "occupation",
+        "place",
+        "nickname"
+      ],
+      "nickname": "Bellows",
+      "occupation": "peat cutter",
+      "place": "Cinderfell",
+      "age": 70
+    },
+    {
+      "doc_id": "D0384",
+      "patient_id": "P075",
+      "span": [
+        305,
+        411
+      ],
+      "consent_state": "revoked",
+      "quasi_identifiers": [
+        "age",
+        "occupation",
+        "place",
+        "nickname"
+      ],
+      "nickname": "Latch",
+      "occupation": "clock restorer",
+      "place": "Dunhollow",
+      "age": 72
+    },
+    {
+      "doc_id": "D0385",
+      "patient_id": "P075",
+      "span": [
+        286,
+        392
+      ],
+      "consent_state": "revoked",
+      "quasi_identifiers": [
+        "age",
+        "occupation",
+        "place",
+        "nickname"
+      ],
+      "nickname": "Latch",
+      "occupation": "clock restorer",
+      "place": "Dunhollow",
+      "age": 72
+    },
+    {
+      "doc_id": "D0387",
+      "patient_id": "P075",
+      "span": [
+        297,
+        403
+      ],
+      "consent_state": "revoked",
+      "quasi_identifiers": [
+        "age",
+        "occupation",
+        "place",
+        "nickname"
+      ],
+      "nickname": "Latch",
+      "occupation": "clock restorer",
+      "place": "Dunhollow",
+      "age": 72
+    },
+    {
+      "doc_id": "D0404",
+      "patient_id": "P080",
+      "span": [
+        302,
+        407
+      ],
+      "consent_state": "never",
+      "quasi_identifiers": [
+        "age",
+        "occupation",
+        "place",
+        "nickname"
+      ],
+      "nickname": "Fathom",
+      "occupation": "bell founder",
+      "place": "Aldermoor",
+      "age": 46
+    },
+    {
+      "doc_id": "D0405",
+      "patient_id": "P080",
+      "span": [
+        291,
+        396
+      ],
+      "consent_state": "never",
+      "quasi_identifiers": [
+        "age",
+        "occupation",
+        "place",
+        "nickname"
+      ],
+      "nickname": "Fathom",
+      "occupation": "bell founder",
+      "place": "Aldermoor",
+      "age": 46
+    },
+    {
+      "doc_id": "D0406",
+      "patient_id": "P080",
+      "span": [
+        296,
+        401
+      ],
+      "consent_state": "never",
+      "quasi_identifiers": [
+        "age",
+        "occupation",
+        "place",
+        "nickname"
+      ],
+      "nickname": "Fathom",
+      "occupation": "bell founder",
+      "place": "Aldermoor",
+      "age": 46
+    },
+    {
+      "doc_id": "D0455",
+      "patient_id": "P092",
+      "span": [
+        287,
+        412
+      ],
+      "consent_state": "expired",
+      "quasi_identifiers": [
+        "age",
+        "occupation",
+        "place",
+        "nickname"
+      ],
+      "nickname": "Pennant",
+      "occupation": "net mender",
+      "place": "Cinderfell",
+      "age": 47
+    },
+    {
+      "doc_id": "D0456",
+      "patient_id": "P092",
+      "span": [
+        283,
+        408
+      ],
+      "consent_state": "expired",
+      "quasi_identifiers": [
+        "age",
+        "occupation",
+        "place",
+        "nickname"
+      ],
+      "nickname": "Pennant",
+      "occupation": "net mender",
+      "place": "Cinderfell",
+      "age": 47
+    },
+    {
+      "doc_id": "D0457",
+      "patient_id": "P092",
+      "span": [
+        285,
+        410
+      ],
+      "consent_state": "expired",
+      "quasi_identifiers": [
+        "age",
+        "occupation",
+        "place",
+        "nickname"
+      ],
+      "nickname": "Pennant",
+      "occupation": "net mender",
+      "place": "Cinderfell",
+      "age": 47
+    },
+    {
+      "doc_id": "D0465",
+      "patient_id": "P094",
+      "span": [
+        291,
+        419
+      ],
+      "consent_state": "active_direct_care",
+      "quasi_identifiers": [
+        "age",
+        "occupation",
+        "place",
+        "nickname"
+      ],
+      "nickname": "Whistler",
+      "occupation": "harbour pilot",
+      "place": "Dunhollow",
+      "age": 28
+    },
+    {
+      "doc_id": "D0467",
+      "patient_id": "P094",
+      "span": [
+        291,
+        419
+      ],
+      "consent_state": "active_direct_care",
+      "quasi_identifiers": [
+        "age",
+        "occupation",
+        "place",
+        "nickname"
+      ],
+      "nickname": "Whistler",
+      "occupation": "harbour pilot",
+      "place": "Dunhollow",
+      "age": 28
+    },
+    {
+      "doc_id": "D0468",
+      "patient_id": "P094",
+      "span": [
+        315,
+        443
+      ],
+      "consent_state": "active_direct_care",
+      "quasi_identifiers": [
+        "age",
+        "occupation",
+        "place",
+        "nickname"
+      ],
+      "nickname": "Whistler",
+      "occupation": "harbour pilot",
+      "place": "Dunhollow",
+      "age": 28
+    },
+    {
+      "doc_id": "D0515",
+      "patient_id": "P104",
+      "span": [
+        286,
+        406
+      ],
+      "consent_state": "future",
+      "quasi_identifiers": [
+        "age",
+        "occupation",
+        "place",
+        "nickname"
+      ],
+      "nickname": "Marrow",
+      "occupation": "farrier",
+      "place": "Aldermoor",
+      "age": 87
+    },
+    {
+      "doc_id": "D0516",
+      "patient_id": "P104",
+      "span": [
+        292,
+        412
+      ],
+      "consent_state": "future",
+      "quasi_identifiers": [
+        "age",
+        "occupation",
+        "place",
+        "nickname"
+      ],
+      "nickname": "Marrow",
+      "occupation": "farrier",
+      "place": "Aldermoor",
+      "age": 87
+    },
+    {
+      "doc_id": "D0517",
+      "patient_id": "P104",
+      "span": [
+        317,
+        437
+      ],
+      "consent_state": "future",
+      "quasi_identifiers": [
+        "age",
+        "occupation",
+        "place",
+        "nickname"
+      ],
+      "nickname": "Marrow",
+      "occupation": "farrier",
+      "place": "Aldermoor",
+      "age": 87
+    },
+    {
+      "doc_id": "D0543",
+      "patient_id": "P110",
+      "span": [
+        317,
+        436
+      ],
+      "consent_state": "active_research",
+      "quasi_identifiers": [
+        "age",
+        "occupation",
+        "place",
+        "nickname"
+      ],
+      "nickname": "Wick",
+      "occupation": "cartwright",
+      "place": "Bramleigh",
+      "age": 32
+    },
+    {
+      "doc_id": "D0548",
+      "patient_id": "P110",
+      "span": [
+        304,
+        423
+      ],
+      "consent_state": "active_research",
+      "quasi_identifiers": [
+        "age",
+        "occupation",
+        "place",
+        "nickname"
+      ],
+      "nickname": "Wick",
+      "occupation": "cartwright",
+      "place": "Bramleigh",
+      "age": 32
+    },
+    {
+      "doc_id": "D0556",
+      "patient_id": "P112",
+      "span": [
+        298,
+        418
+      ],
+      "consent_state": "future",
+      "quasi_identifiers": [
+        "age",
+        "occupation",
+        "place",
+        "nickname"
+      ],
+      "nickname": "Gorse",
+      "occupation": "chandler",
+      "place": "Bramleigh",
+      "age": 73
+    },
+    {
+      "doc_id": "D0557",
+      "patient_id": "P112",
+      "span": [
+        296,
+        416
+      ],
+      "consent_state": "future",
+      "quasi_identifiers": [
+        "age",
+        "occupation",
+        "place",
+        "nickname"
+      ],
+      "nickname": "Gorse",
+      "occupation": "chandler",
+      "place": "Bramleigh",
+      "age": 73
+    },
+    {
+      "doc_id": "D0558",
+      "patient_id": "P112",
+      "span": [
+        280,
+        400
+      ],
+      "consent_state": "future",
+      "quasi_identifiers": [
+        "age",
+        "occupation",
+        "place",
+        "nickname"
+      ],
+      "nickname": "Gorse",
+      "occupation": "chandler",
+      "place": "Bramleigh",
+      "age": 73
+    },
+    {
+      "doc_id": "D0628",
+      "patient_id": "P126",
+      "span": [
+        292,
+        393
+      ],
+      "consent_state": "active_research",
+      "quasi_identifiers": [
+        "age",
+        "occupation",
+        "place",
+        "nickname"
+      ],
+      "nickname": "Tally",
+      "occupation": "beekeeper",
+      "place": "Dunhollow",
+      "age": 73
+    },
+    {
+      "doc_id": "D0630",
+      "patient_id": "P126",
+      "span": [
+        284,
+        385
+      ],
+      "consent_state": "active_research",
+      "quasi_identifiers": [
+        "age",
+        "occupation",
+        "place",
+        "nickname"
+      ],
+      "nickname": "Tally",
+      "occupation": "beekeeper",
+      "place": "Dunhollow",
+      "age": 73
+    },
+    {
+      "doc_id": "D0633",
+      "patient_id": "P126",
+      "span": [
+        288,
+        389
+      ],
+      "consent_state": "active_research",
+      "quasi_identifiers": [
+        "age",
+        "occupation",
+        "place",
+        "nickname"
+      ],
+      "nickname": "Tally",
+      "occupation": "beekeeper",
+      "place": "Dunhollow",
+      "age": 73
+    },
+    {
+      "doc_id": "D0651",
+      "patient_id": "P131",
+      "span": [
+        284,
+        394
+      ],
+      "consent_state": "future",
+      "quasi_identifiers": [
+        "age",
+        "occupation",
+        "place",
+        "nickname"
+      ],
+      "nickname": "Ember",
+      "occupation": "falconer",
+      "place": "Aldermoor",
+      "age": 51
+    },
+    {
+      "doc_id": "D0654",
+      "patient_id": "P131",
+      "span": [
+        284,
+        394
+      ],
+      "consent_state": "future",
+      "quasi_identifiers": [
+        "age",
+        "occupation",
+        "place",
+        "nickname"
+      ],
+      "nickname": "Ember",
+      "occupation": "falconer",
+      "place": "Aldermoor",
+      "age": 51
+    },
+    {
+      "doc_id": "D0683",
+      "patient_id": "P138",
+      "span": [
+        301,
+        424
+      ],
+      "consent_state": "revoked",
+      "quasi_identifiers": [
+        "age",
+        "occupation",
+        "place",
+        "nickname"
+      ],
+      "nickname": "Beacon",
+      "occupation": "lock keeper",
+      "place": "Cinderfell",
+      "age": 42
+    },
+    {
+      "doc_id": "D0684",
+      "patient_id": "P138",
+      "span": [
+        326,
+        449
+      ],
+      "consent_state": "revoked",
+      "quasi_identifiers": [
+        "age",
+        "occupation",
+        "place",
+        "nickname"
+      ],
+      "nickname": "Beacon",
+      "occupation": "lock keeper",
+      "place": "Cinderfell",
+      "age": 42
+    },
+    {
+      "doc_id": "D0695",
+      "patient_id": "P140",
+      "span": [
+        287,
+        410
+      ],
+      "consent_state": "expired",
+      "quasi_identifiers": [
+        "age",
+        "occupation",
+        "place",
+        "nickname"
+      ],
+      "nickname": "Thimble",
+      "occupation": "bookbinder",
+      "place": "Draymoor",
+      "age": 43
+    },
+    {
+      "doc_id": "D0696",
+      "patient_id": "P140",
+      "span": [
+        307,
+        430
+      ],
+      "consent_state": "expired",
+      "quasi_identifiers": [
+        "age",
+        "occupation",
+        "place",
+        "nickname"
+      ],
+      "nickname": "Thimble",
+      "occupation": "bookbinder",
+      "place": "Draymoor",
+      "age": 43
+    },
+    {
+      "doc_id": "D0697",
+      "patient_id": "P140",
+      "span": [
+        298,
+        421
+      ],
+      "consent_state": "expired",
+      "quasi_identifiers": [
+        "age",
+        "occupation",
+        "place",
+        "nickname"
+      ],
+      "nickname": "Thimble",
+      "occupation": "bookbinder",
+      "place": "Draymoor",
+      "age": 43
+    },
+    {
+      "doc_id": "D0874",
+      "patient_id": "P175",
+      "span": [
+        287,
+        401
+      ],
+      "consent_state": "expired",
+      "quasi_identifiers": [
+        "age",
+        "occupation",
+        "place",
+        "nickname"
+      ],
+      "nickname": "Quill",
+      "occupation": "organ tuner",
+      "place": "Aldermoor",
+      "age": 31
+    },
+    {
+      "doc_id": "D0875",
+      "patient_id": "P175",
+      "span": [
+        296,
+        410
+      ],
+      "consent_state": "expired",
+      "quasi_identifiers": [
+        "age",
+        "occupation",
+        "place",
+        "nickname"
+      ],
+      "nickname": "Quill",
+      "occupation": "organ tuner",
+      "place": "Aldermoor",
+      "age": 31
+    },
+    {
+      "doc_id": "D0933",
+      "patient_id": "P186",
+      "span": [
+        299,
+        420
+      ],
+      "consent_state": "never",
+      "quasi_identifiers": [
+        "age",
+        "occupation",
+        "place",
+        "nickname"
+      ],
+      "nickname": "Tinder",
+      "occupation": "lighthouse keeper",
+      "place": "Bramleigh",
+      "age": 27
+    },
+    {
+      "doc_id": "D0934",
+      "patient_id": "P186",
+      "span": [
+        290,
+        411
+      ],
+      "consent_state": "never",
+      "quasi_identifiers": [
+        "age",
+        "occupation",
+        "place",
+        "nickname"
+      ],
+      "nickname": "Tinder",
+      "occupation": "lighthouse keeper",
+      "place": "Bramleigh",
+      "age": 27
+    },
+    {
+      "doc_id": "D0940",
+      "patient_id": "P188",
+      "span": [
+        278,
+        382
+      ],
+      "consent_state": "active_direct_care",
+      "quasi_identifiers": [
+        "age",
+        "occupation",
+        "place",
+        "nickname"
+      ],
+      "nickname": "Nettle",
+      "occupation": "stonemason",
+      "place": "Cinderfell",
+      "age": 80
+    },
+    {
+      "doc_id": "D0942",
+      "patient_id": "P188",
+      "span": [
+        303,
+        407
+      ],
+      "consent_state": "active_direct_care",
+      "quasi_identifiers": [
+        "age",
+        "occupation",
+        "place",
+        "nickname"
+      ],
+      "nickname": "Nettle",
+      "occupation": "stonemason",
+      "place": "Cinderfell",
+      "age": 80
+    },
+    {
+      "doc_id": "D0943",
+      "patient_id": "P188",
+      "span": [
+        284,
+        388
+      ],
+      "consent_state": "active_direct_care",
+      "quasi_identifiers": [
+        "age",
+        "occupation",
+        "place",
+        "nickname"
+      ],
+      "nickname": "Nettle",
+      "occupation": "stonemason",
+      "place": "Cinderfell",
+      "age": 80
+    },
+    {
+      "doc_id": "D0957",
+      "patient_id": "P192",
+      "span": [
+        282,
+        395
+      ],
+      "consent_state": "future",
+      "quasi_identifiers": [
+        "age",
+        "occupation",
+        "place",
+        "nickname"
+      ],
+      "nickname": "Cinder",
+      "occupation": "fletcher",
+      "place": "Cinderfell",
+      "age": 63
+    },
+    {
+      "doc_id": "D0959",
+      "patient_id": "P192",
+      "span": [
+        285,
+        398
+      ],
+      "consent_state": "future",
+      "quasi_identifiers": [
+        "age",
+        "occupation",
+        "place",
+        "nickname"
+      ],
+      "nickname": "Cinder",
+      "occupation": "fletcher",
+      "place": "Cinderfell",
+      "age": 63
+    }
+  ],
+  "small_cells": [
+    {
+      "stratum": "cond=Ambrey nephritis|region=Quillmoor",
+      "condition": "Ambrey nephritis",
+      "region": "Quillmoor",
+      "size": 1,
+      "members": [
+        "P009"
+      ],
+      "non_consented": {
+        "direct_care": [],
+        "research": [
+          "P009"
+        ],
+        "outreach": [
+          "P009"
+        ],
+        "quality_improvement": []
+      }
+    },
+    {
+      "stratum": "cond=Ashcombe myopathy|region=Vellum Bay",
+      "condition": "Ashcombe myopathy",
+      "region": "Vellum Bay",
+      "size": 2,
+      "members": [
+        "P028",
+        "P184"
+      ],
+      "non_consented": {
+        "direct_care": [
+          "P184"
+        ],
+        "research": [
+          "P028",
+          "P184"
+        ],
+        "outreach": [
+          "P028",
+          "P184"
+        ],
+        "quality_improvement": [
+          "P184"
+        ]
+      }
+    },
+    {
+      "stratum": "cond=Brackwater neuropathy|region=Netherby Cross",
+      "condition": "Brackwater neuropathy",
+      "region": "Netherby Cross",
+      "size": 2,
+      "members": [
+        "P100",
+        "P165"
+      ],
+      "non_consented": {
+        "direct_care": [
+          "P100"
+        ],
+        "research": [
+          "P100",
+          "P165"
+        ],
+        "outreach": [
+          "P100",
+          "P165"
+        ],
+        "quality_improvement": [
+          "P100",
+          "P165"
+        ]
+      }
+    },
+    {
+      "stratum": "cond=Cindral ataxia|region=Quillmoor",
+      "condition": "Cindral ataxia",
+      "region": "Quillmoor",
+      "size": 3,
+      "members": [
+        "P010",
+        "P058",
+        "P091"
+      ],
+      "non_consented": {
+        "direct_care": [
+          "P091"
+        ],
+        "research": [
+          "P010",
+          "P058",
+          "P091"
+        ],
+        "outreach": [
+          "P010",
+          "P058",
+          "P091"
+        ],
+        "quality_improvement": [
+          "P058",
+          "P091"
+        ]
+      }
+    },
+    {
+      "stratum": "cond=Corvane immunodeficiency|region=Redwyn Isle",
+      "condition": "Corvane immunodeficiency",
+      "region": "Redwyn Isle",
+      "size": 2,
+      "members": [
+        "P108",
+        "P114"
+      ],
+      "non_consented": {
+        "direct_care": [],
+        "research": [
+          "P108",
+          "P114"
+        ],
+        "outreach": [
+          "P108",
+          "P114"
+        ],
+        "quality_improvement": [
+          "P108",
+          "P114"
+        ]
+      }
+    },
+    {
+      "stratum": "cond=Delphin-Marsh syndrome|region=Netherby Cross",
+      "condition": "Delphin-Marsh syndrome",
+      "region": "Netherby Cross",
+      "size": 3,
+      "members": [
+        "P077",
+        "P109",
+        "P185"
+      ],
+      "non_consented": {
+        "direct_care": [
+          "P077"
+        ],
+        "research": [
+          "P109",
+          "P185"
+        ],
+        "outreach": [
+          "P077",
+          "P109",
+          "P185"
+        ],
+        "quality_improvement": [
+          "P077",
+          "P185"
+        ]
+      }
+    },
+    {
+      "stratum": "cond=Halbrook enteropathy|region=Kirkhollow",
+      "condition": "Halbrook enteropathy",
+      "region": "Kirkhollow",
+      "size": 2,
+      "members": [
+        "P061",
+        "P113"
+      ],
+      "non_consented": {
+        "direct_care": [
+          "P113"
+        ],
+        "research": [
+          "P061",
+          "P113"
+        ],
+        "outreach": [
+          "P061",
+          "P113"
+        ],
+        "quality_improvement": [
+          "P061",
+          "P113"
+        ]
+      }
+    },
+    {
+      "stratum": "cond=Ilvane porphyria|region=Halloway Sands",
+      "condition": "Ilvane porphyria",
+      "region": "Halloway Sands",
+      "size": 1,
+      "members": [
+        "P169"
+      ],
+      "non_consented": {
+        "direct_care": [
+          "P169"
+        ],
+        "research": [
+          "P169"
+        ],
+        "outreach": [
+          "P169"
+        ],
+        "quality_improvement": [
+          "P169"
+        ]
+      }
+    },
+    {
+      "stratum": "cond=Kessler syndrome|region=Kirkhollow",
+      "condition": "Kessler syndrome",
+      "region": "Kirkhollow",
+      "size": 1,
+      "members": [
+        "P187"
+      ],
+      "non_consented": {
+        "direct_care": [
+          "P187"
+        ],
+        "research": [
+          "P187"
+        ],
+        "outreach": [
+          "P187"
+        ],
+        "quality_improvement": [
+          "P187"
+        ]
+      }
+    },
+    {
+      "stratum": "cond=Marran-Doyle deficiency|region=Eastmere",
+      "condition": "Marran-Doyle deficiency",
+      "region": "Eastmere",
+      "size": 2,
+      "members": [
+        "P066",
+        "P123"
+      ],
+      "non_consented": {
+        "direct_care": [
+          "P123"
+        ],
+        "research": [
+          "P066",
+          "P123"
+        ],
+        "outreach": [
+          "P066",
+          "P123"
+        ],
+        "quality_improvement": [
+          "P123"
+        ]
+      }
+    },
+    {
+      "stratum": "cond=Merrow-Kane syndrome|region=Redwyn Isle",
+      "condition": "Merrow-Kane syndrome",
+      "region": "Redwyn Isle",
+      "size": 1,
+      "members": [
+        "P068"
+      ],
+      "non_consented": {
+        "direct_care": [
+          "P068"
+        ],
+        "research": [
+          "P068"
+        ],
+        "outreach": [
+          "P068"
+        ],
+        "quality_improvement": [
+          "P068"
+        ]
+      }
+    },
+    {
+      "stratum": "cond=Norrow band keratopathy|region=Halloway Sands",
+      "condition": "Norrow band keratopathy",
+      "region": "Halloway Sands",
+      "size": 2,
+      "members": [
+        "P136",
+        "P145"
+      ],
+      "non_consented": {
+        "direct_care": [],
+        "research": [
+          "P136",
+          "P145"
+        ],
+        "outreach": [
+          "P136",
+          "P145"
+        ],
+        "quality_improvement": [
+          "P136",
+          "P145"
+        ]
+      }
+    },
+    {
+      "stratum": "cond=Ondry-Vale amyloidosis|region=Eastmere",
+      "condition": "Ondry-Vale amyloidosis",
+      "region": "Eastmere",
+      "size": 3,
+      "members": [
+        "P056",
+        "P065",
+        "P195"
+      ],
+      "non_consented": {
+        "direct_care": [
+          "P056",
+          "P195"
+        ],
+        "research": [
+          "P056",
+          "P065"
+        ],
+        "outreach": [
+          "P056",
+          "P065"
+        ],
+        "quality_improvement": [
+          "P056",
+          "P065",
+          "P195"
+        ]
+      }
+    },
+    {
+      "stratum": "cond=Pell-Rutter dystrophy|region=Ossary Point",
+      "condition": "Pell-Rutter dystrophy",
+      "region": "Ossary Point",
+      "size": 1,
+      "members": [
+        "P064"
+      ],
+      "non_consented": {
+        "direct_care": [
+          "P064"
+        ],
+        "research": [
+          "P064"
+        ],
+        "outreach": [
+          "P064"
+        ],
+        "quality_improvement": [
+          "P064"
+        ]
+      }
+    },
+    {
+      "stratum": "cond=Quillane haemolysis|region=Vellum Bay",
+      "condition": "Quillane haemolysis",
+      "region": "Vellum Bay",
+      "size": 3,
+      "members": [
+        "P005",
+        "P033",
+        "P157"
+      ],
+      "non_consented": {
+        "direct_care": [
+          "P033"
+        ],
+        "research": [
+          "P005",
+          "P033",
+          "P157"
+        ],
+        "outreach": [
+          "P005",
+          "P033",
+          "P157"
+        ],
+        "quality_improvement": [
+          "P005",
+          "P033"
+        ]
+      }
+    },
+    {
+      "stratum": "cond=Sable ridge dysplasia|region=Thornwick",
+      "condition": "Sable ridge dysplasia",
+      "region": "Thornwick",
+      "size": 1,
+      "members": [
+        "P003"
+      ],
+      "non_consented": {
+        "direct_care": [
+          "P003"
+        ],
+        "research": [
+          "P003"
+        ],
+        "outreach": [
+          "P003"
+        ],
+        "quality_improvement": [
+          "P003"
+        ]
+      }
+    },
+    {
+      "stratum": "cond=Tarrow's granulomatosis|region=Draymoor",
+      "condition": "Tarrow's granulomatosis",
+      "region": "Draymoor",
+      "size": 3,
+      "members": [
+        "P022",
+        "P116",
+        "P140"
+      ],
+      "non_consented": {
+        "direct_care": [
+          "P140"
+        ],
+        "research": [
+          "P022",
+          "P116",
+          "P140"
+        ],
+        "outreach": [
+          "P022",
+          "P116",
+          "P140"
+        ],
+        "quality_improvement": [
+          "P022",
+          "P116",
+          "P140"
+        ]
+      }
+    },
+    {
+      "stratum": "cond=Tessary duct atresia|region=Draymoor",
+      "condition": "Tessary duct atresia",
+      "region": "Draymoor",
+      "size": 1,
+      "members": [
+        "P053"
+      ],
+      "non_consented": {
+        "direct_care": [],
+        "research": [
+          "P053"
+        ],
+        "outreach": [
+          "P053"
+        ],
+        "quality_improvement": [
+          "P053"
+        ]
+      }
+    },
+    {
+      "stratum": "cond=Vosk anomaly|region=Thornwick",
+      "condition": "Vosk anomaly",
+      "region": "Thornwick",
+      "size": 3,
+      "members": [
+        "P047",
+        "P168",
+        "P191"
+      ],
+      "non_consented": {
+        "direct_care": [
+          "P047",
+          "P191"
+        ],
+        "research": [
+          "P047",
+          "P168"
+        ],
+        "outreach": [
+          "P047",
+          "P168",
+          "P191"
+        ],
+        "quality_improvement": [
+          "P047",
+          "P191"
+        ]
+      }
+    },
+    {
+      "stratum": "cond=Wrenfield cardiomyopathy|region=Ossary Point",
+      "condition": "Wrenfield cardiomyopathy",
+      "region": "Ossary Point",
+      "size": 2,
+      "members": [
+        "P103",
+        "P146"
+      ],
+      "non_consented": {
+        "direct_care": [
+          "P103"
+        ],
+        "research": [
+          "P103",
+          "P146"
+        ],
+        "outreach": [
+          "P103",
+          "P146"
+        ],
+        "quality_improvement": [
+          "P103",
+          "P146"
+        ]
+      }
+    }
+  ],
+  "oracle_pairs": [
+    {
+      "present_token": "ZZORACLE-010-kejr",
+      "absent_token": "ZZORACLE-010-vbbs",
+      "combo_token": "ZZCOMBO-010-itdp",
+      "doc_id": "D0018",
+      "patient_id": "P004",
+      "consent_state": "never"
+    },
+    {
+      "present_token": "ZZORACLE-014-mlyf",
+      "absent_token": "ZZORACLE-014-fnyd",
+      "combo_token": null,
+      "doc_id": "D0118",
+      "patient_id": "P023",
+      "consent_state": "never"
+    },
+    {
+      "present_token": "ZZORACLE-018-tpnm",
+      "absent_token": "ZZORACLE-018-nohk",
+      "combo_token": null,
+      "doc_id": "D0131",
+      "patient_id": "P025",
+      "consent_state": "expired"
+    },
+    {
+      "present_token": "ZZORACLE-023-agrm",
+      "absent_token": "ZZORACLE-023-prdx",
+      "combo_token": null,
+      "doc_id": "D0180",
+      "patient_id": "P036",
+      "consent_state": "revoked"
+    },
+    {
+      "present_token": "ZZORACLE-009-ffhs",
+      "absent_token": "ZZORACLE-009-guxa",
+      "combo_token": "ZZCOMBO-009-sjvl",
+      "doc_id": "D0193",
+      "patient_id": "P038",
+      "consent_state": "never"
+    },
+    {
+      "present_token": "ZZORACLE-005-lheu",
+      "absent_token": "ZZORACLE-005-ktgm",
+      "combo_token": "ZZCOMBO-005-xzdu",
+      "doc_id": "D0204",
+      "patient_id": "P041",
+      "consent_state": "future"
+    },
+    {
+      "present_token": "ZZORACLE-004-nkqs",
+      "absent_token": "ZZORACLE-004-xapv",
+      "combo_token": "ZZCOMBO-004-xwza",
+      "doc_id": "D0227",
+      "patient_id": "P046",
+      "consent_state": "never"
+    },
+    {
+      "present_token": "ZZORACLE-006-vwsp",
+      "absent_token": "ZZORACLE-006-chvu",
+      "combo_token": "ZZCOMBO-006-itex",
+      "doc_id": "D0233",
+      "patient_id": "P047",
+      "consent_state": "expired"
+    },
+    {
+      "present_token": "ZZORACLE-012-whmw",
+      "absent_token": "ZZORACLE-012-ufyf",
+      "combo_token": null,
+      "doc_id": "D0238",
+      "patient_id": "P048",
+      "consent_state": "revoked"
+    },
+    {
+      "present_token": "ZZORACLE-003-uyua",
+      "absent_token": "ZZORACLE-003-qwhn",
+      "combo_token": "ZZCOMBO-003-ceqw",
+      "doc_id": "D0275",
+      "patient_id": "P055",
+      "consent_state": "revoked"
+    },
+    {
+      "present_token": "ZZORACLE-019-wuef",
+      "absent_token": "ZZORACLE-019-koyu",
+      "combo_token": null,
+      "doc_id": "D0301",
+      "patient_id": "P059",
+      "consent_state": "expired"
+    },
+    {
+      "present_token": "ZZORACLE-011-etij",
+      "absent_token": "ZZORACLE-011-fptc",
+      "combo_token": null,
+      "doc_id": "D0326",
+      "patient_id": "P064",
+      "consent_state": "never"
+    },
+    {
+      "present_token": "ZZORACLE-025-rnjq",
+      "absent_token": "ZZORACLE-025-orxg",
+      "combo_token": null,
+      "doc_id": "D0347",
+      "patient_id": "P068",
+      "consent_state": "never"
+    },
+    {
+      "present_token": "ZZORACLE-026-ikde",
+      "absent_token": "ZZORACLE-026-kbii",
+      "combo_token": null,
+      "doc_id": "D0398",
+      "patient_id": "P078",
+      "consent_state": "never"
+    },
+    {
+      "present_token": "ZZORACLE-021-cmlv",
+      "absent_token": "ZZORACLE-021-nuou",
+      "combo_token": null,
+      "doc_id": "D0510",
+      "patient_id": "P103",
+      "consent_state": "never"
+    },
+    {
+      "present_token": "ZZORACLE-024-crhq",
+      "absent_token": "ZZORACLE-024-vfqc",
+      "combo_token": null,
+      "doc_id": "D0514",
+      "patient_id": "P104",
+      "consent_state": "future"
+    },
+    {
+      "present_token": "ZZORACLE-022-szhw",
+      "absent_token": "ZZORACLE-022-atmo",
+      "combo_token": null,
+      "doc_id": "D0522",
+      "patient_id": "P105",
+      "consent_state": "expired"
+    },
+    {
+      "present_token": "ZZORACLE-017-ivgg",
+      "absent_token": "ZZORACLE-017-vhcw",
+      "combo_token": null,
+      "doc_id": "D0615",
+      "patient_id": "P123",
+      "consent_state": "never"
+    },
+    {
+      "present_token": "ZZORACLE-002-qcfu",
+      "absent_token": "ZZORACLE-002-idji",
+      "combo_token": "ZZCOMBO-002-wpyl",
+      "doc_id": "D0664",
+      "patient_id": "P134",
+      "consent_state": "expired"
+    },
+    {
+      "present_token": "ZZORACLE-016-topp",
+      "absent_token": "ZZORACLE-016-rkmz",
+      "combo_token": null,
+      "doc_id": "D0679",
+      "patient_id": "P137",
+      "consent_state": "revoked"
+    },
+    {
+      "present_token": "ZZORACLE-028-weiq",
+      "absent_token": "ZZORACLE-028-bawf",
+      "combo_token": null,
+      "doc_id": "D0693",
+      "patient_id": "P140",
+      "consent_state": "expired"
+    },
+    {
+      "present_token": "ZZORACLE-013-advc",
+      "absent_token": "ZZORACLE-013-flgr",
+      "combo_token": null,
+      "doc_id": "D0709",
+      "patient_id": "P142",
+      "consent_state": "never"
+    },
+    {
+      "present_token": "ZZORACLE-027-zagj",
+      "absent_token": "ZZORACLE-027-schz",
+      "combo_token": null,
+      "doc_id": "D0714",
+      "patient_id": "P144",
+      "consent_state": "never"
+    },
+    {
+      "present_token": "ZZORACLE-015-spov",
+      "absent_token": "ZZORACLE-015-kexw",
+      "combo_token": null,
+      "doc_id": "D0903",
+      "patient_id": "P180",
+      "consent_state": "future"
+    },
+    {
+      "present_token": "ZZORACLE-029-ydoy",
+      "absent_token": "ZZORACLE-029-cjol",
+      "combo_token": null,
+      "doc_id": "D0910",
+      "patient_id": "P182",
+      "consent_state": "revoked"
+    },
+    {
+      "present_token": "ZZORACLE-001-mzxi",
+      "absent_token": "ZZORACLE-001-axml",
+      "combo_token": "ZZCOMBO-001-zvth",
+      "doc_id": "D0914",
+      "patient_id": "P183",
+      "consent_state": "never"
+    },
+    {
+      "present_token": "ZZORACLE-007-gcvs",
+      "absent_token": "ZZORACLE-007-addm",
+      "combo_token": "ZZCOMBO-007-icuu",
+      "doc_id": "D0936",
+      "patient_id": "P187",
+      "consent_state": "future"
+    },
+    {
+      "present_token": "ZZORACLE-008-tmbl",
+      "absent_token": "ZZORACLE-008-tqqk",
+      "combo_token": "ZZCOMBO-008-aqho",
+      "doc_id": "D0957",
+      "patient_id": "P192",
+      "consent_state": "future"
+    },
+    {
+      "present_token": "ZZORACLE-020-ycly",
+      "absent_token": "ZZORACLE-020-pudn",
+      "combo_token": null,
+      "doc_id": "D0976",
+      "patient_id": "P196",
+      "consent_state": "revoked"
+    },
+    {
+      "present_token": "ZZORACLE-030-tlbh",
+      "absent_token": "ZZORACLE-030-dtgr",
+      "combo_token": null,
+      "doc_id": "D0985",
+      "patient_id": "P198",
+      "consent_state": "never"
+    }
+  ],
+  "identifier_count": 5000
+}

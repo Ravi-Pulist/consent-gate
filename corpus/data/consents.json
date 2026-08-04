@@ -1,0 +1,2032 @@
+[
+  {
+    "subject": "P001",
+    "purposes": [
+      "direct_care"
+    ],
+    "valid_from": "2025-11-22T00:00:00+00:00",
+    "valid_until": null,
+    "revoked_at": null,
+    "scope": [
+      "progress_note"
+    ],
+    "version": 1
+  },
+  {
+    "subject": "P005",
+    "purposes": [
+      "direct_care"
+    ],
+    "valid_from": "2024-03-25T00:00:00+00:00",
+    "valid_until": null,
+    "revoked_at": null,
+    "scope": [],
+    "version": 1
+  },
+  {
+    "subject": "P006",
+    "purposes": [
+      "research"
+    ],
+    "valid_from": "2023-09-11T00:00:00+00:00",
+    "valid_until": "2027-06-24T00:00:00+00:00",
+    "revoked_at": null,
+    "scope": [],
+    "version": 1
+  },
+  {
+    "subject": "P007",
+    "purposes": [
+      "research",
+      "outreach"
+    ],
+    "valid_from": "2023-10-04T00:00:00+00:00",
+    "valid_until": null,
+    "revoked_at": null,
+    "scope": [],
+    "version": 1
+  },
+  {
+    "subject": "P008",
+    "purposes": [
+      "direct_care"
+    ],
+    "valid_from": "2024-07-02T00:00:00+00:00",
+    "valid_until": null,
+    "revoked_at": null,
+    "scope": [],
+    "version": 1
+  },
+  {
+    "subject": "P009",
+    "purposes": [
+      "direct_care",
+      "quality_improvement"
+    ],
+    "valid_from": "2024-10-17T00:00:00+00:00",
+    "valid_until": null,
+    "revoked_at": null,
+    "scope": [],
+    "version": 1
+  },
+  {
+    "subject": "P010",
+    "purposes": [
+      "direct_care",
+      "quality_improvement"
+    ],
+    "valid_from": "2025-11-06T00:00:00+00:00",
+    "valid_until": null,
+    "revoked_at": null,
+    "scope": [],
+    "version": 1
+  },
+  {
+    "subject": "P011",
+    "purposes": [
+      "direct_care"
+    ],
+    "valid_from": "2025-02-28T00:00:00+00:00",
+    "valid_until": "2026-11-23T00:00:00+00:00",
+    "revoked_at": "2025-11-09T00:00:00+00:00",
+    "scope": [],
+    "version": 2
+  },
+  {
+    "subject": "P012",
+    "purposes": [
+      "research"
+    ],
+    "valid_from": "2024-03-29T00:00:00+00:00",
+    "valid_until": null,
+    "revoked_at": "2025-11-01T00:00:00+00:00",
+    "scope": [],
+    "version": 2
+  },
+  {
+    "subject": "P014",
+    "purposes": [
+      "direct_care"
+    ],
+    "valid_from": "2023-12-15T00:00:00+00:00",
+    "valid_until": null,
+    "revoked_at": "2025-12-31T00:00:00+00:00",
+    "scope": [],
+    "version": 2
+  },
+  {
+    "subject": "P015",
+    "purposes": [
+      "research"
+    ],
+    "valid_from": "2024-12-13T00:00:00+00:00",
+    "valid_until": null,
+    "revoked_at": "2026-07-07T00:00:00+00:00",
+    "scope": [],
+    "version": 2
+  },
+  {
+    "subject": "P016",
+    "purposes": [
+      "research"
+    ],
+    "valid_from": "2024-04-28T00:00:00+00:00",
+    "valid_until": "2025-12-22T00:00:00+00:00",
+    "revoked_at": null,
+    "scope": [],
+    "version": 1
+  },
+  {
+    "subject": "P017",
+    "purposes": [
+      "direct_care",
+      "quality_improvement"
+    ],
+    "valid_from": "2024-06-03T00:00:00+00:00",
+    "valid_until": "2028-06-17T00:00:00+00:00",
+    "revoked_at": null,
+    "scope": [],
+    "version": 1
+  },
+  {
+    "subject": "P018",
+    "purposes": [
+      "direct_care",
+      "quality_improvement"
+    ],
+    "valid_from": "2025-12-15T00:00:00+00:00",
+    "valid_until": null,
+    "revoked_at": null,
+    "scope": [],
+    "version": 1
+  },
+  {
+    "subject": "P019",
+    "purposes": [
+      "research",
+      "outreach"
+    ],
+    "valid_from": "2025-08-09T00:00:00+00:00",
+    "valid_until": "2028-02-27T00:00:00+00:00",
+    "revoked_at": null,
+    "scope": [],
+    "version": 1
+  },
+  {
+    "subject": "P020",
+    "purposes": [
+      "direct_care",
+      "quality_improvement"
+    ],
+    "valid_from": "2025-11-06T00:00:00+00:00",
+    "valid_until": null,
+    "revoked_at": null,
+    "scope": [
+      "progress_note"
+    ],
+    "version": 1
+  },
+  {
+    "subject": "P021",
+    "purposes": [
+      "research",
+      "outreach"
+    ],
+    "valid_from": "2024-02-16T00:00:00+00:00",
+    "valid_until": "2027-09-14T00:00:00+00:00",
+    "revoked_at": null,
+    "scope": [],
+    "version": 1
+  },
+  {
+    "subject": "P022",
+    "purposes": [
+      "direct_care"
+    ],
+    "valid_from": "2025-03-17T00:00:00+00:00",
+    "valid_until": null,
+    "revoked_at": null,
+    "scope": [],
+    "version": 1
+  },
+  {
+    "subject": "P024",
+    "purposes": [
+      "direct_care"
+    ],
+    "valid_from": "2025-07-18T00:00:00+00:00",
+    "valid_until": null,
+    "revoked_at": null,
+    "scope": [
+      "progress_note",
+      "discharge_summary"
+    ],
+    "version": 1
+  },
+  {
+    "subject": "P025",
+    "purposes": [
+      "research"
+    ],
+    "valid_from": "2024-07-22T00:00:00+00:00",
+    "valid_until": "2025-11-20T00:00:00+00:00",
+    "revoked_at": null,
+    "scope": [],
+    "version": 1
+  },
+  {
+    "subject": "P026",
+    "purposes": [
+      "direct_care"
+    ],
+    "valid_from": "2025-04-22T00:00:00+00:00",
+    "valid_until": null,
+    "revoked_at": null,
+    "scope": [],
+    "version": 1
+  },
+  {
+    "subject": "P027",
+    "purposes": [
+      "direct_care"
+    ],
+    "valid_from": "2024-01-12T00:00:00+00:00",
+    "valid_until": "2026-12-25T00:00:00+00:00",
+    "revoked_at": null,
+    "scope": [],
+    "version": 1
+  },
+  {
+    "subject": "P028",
+    "purposes": [
+      "direct_care",
+      "quality_improvement"
+    ],
+    "valid_from": "2025-01-01T00:00:00+00:00",
+    "valid_until": null,
+    "revoked_at": null,
+    "scope": [],
+    "version": 1
+  },
+  {
+    "subject": "P029",
+    "purposes": [
+      "direct_care"
+    ],
+    "valid_from": "2025-10-16T00:00:00+00:00",
+    "valid_until": null,
+    "revoked_at": null,
+    "scope": [],
+    "version": 1
+  },
+  {
+    "subject": "P030",
+    "purposes": [
+      "direct_care"
+    ],
+    "valid_from": "2025-08-28T00:00:00+00:00",
+    "valid_until": null,
+    "revoked_at": null,
+    "scope": [
+      "progress_note"
+    ],
+    "version": 1
+  },
+  {
+    "subject": "P031",
+    "purposes": [
+      "direct_care",
+      "quality_improvement"
+    ],
+    "valid_from": "2024-11-10T00:00:00+00:00",
+    "valid_until": null,
+    "revoked_at": null,
+    "scope": [],
+    "version": 1
+  },
+  {
+    "subject": "P032",
+    "purposes": [
+      "direct_care",
+      "quality_improvement"
+    ],
+    "valid_from": "2023-08-22T00:00:00+00:00",
+    "valid_until": null,
+    "revoked_at": null,
+    "scope": [],
+    "version": 1
+  },
+  {
+    "subject": "P033",
+    "purposes": [
+      "research"
+    ],
+    "valid_from": "2025-03-20T00:00:00+00:00",
+    "valid_until": null,
+    "revoked_at": "2026-03-10T00:00:00+00:00",
+    "scope": [],
+    "version": 2
+  },
+  {
+    "subject": "P035",
+    "purposes": [
+      "direct_care",
+      "research"
+    ],
+    "valid_from": "2026-08-18T00:00:00+00:00",
+    "valid_until": "2028-04-10T00:00:00+00:00",
+    "revoked_at": null,
+    "scope": [],
+    "version": 1
+  },
+  {
+    "subject": "P036",
+    "purposes": [
+      "research"
+    ],
+    "valid_from": "2025-01-17T00:00:00+00:00",
+    "valid_until": "2027-04-23T00:00:00+00:00",
+    "revoked_at": "2025-11-11T00:00:00+00:00",
+    "scope": [
+      "progress_note",
+      "discharge_summary"
+    ],
+    "version": 2
+  },
+  {
+    "subject": "P037",
+    "purposes": [
+      "research"
+    ],
+    "valid_from": "2024-11-11T00:00:00+00:00",
+    "valid_until": null,
+    "revoked_at": null,
+    "scope": [],
+    "version": 1
+  },
+  {
+    "subject": "P039",
+    "purposes": [
+      "research",
+      "outreach"
+    ],
+    "valid_from": "2025-07-28T00:00:00+00:00",
+    "valid_until": "2028-11-18T00:00:00+00:00",
+    "revoked_at": null,
+    "scope": [
+      "lab_report"
+    ],
+    "version": 1
+  },
+  {
+    "subject": "P040",
+    "purposes": [
+      "direct_care",
+      "research"
+    ],
+    "valid_from": "2023-05-19T00:00:00+00:00",
+    "valid_until": null,
+    "revoked_at": "2026-04-20T00:00:00+00:00",
+    "scope": [],
+    "version": 2
+  },
+  {
+    "subject": "P041",
+    "purposes": [
+      "research"
+    ],
+    "valid_from": "2027-02-26T00:00:00+00:00",
+    "valid_until": null,
+    "revoked_at": null,
+    "scope": [],
+    "version": 1
+  },
+  {
+    "subject": "P042",
+    "purposes": [
+      "direct_care"
+    ],
+    "valid_from": "2025-12-29T00:00:00+00:00",
+    "valid_until": null,
+    "revoked_at": null,
+    "scope": [],
+    "version": 1
+  },
+  {
+    "subject": "P043",
+    "purposes": [
+      "research"
+    ],
+    "valid_from": "2023-08-31T00:00:00+00:00",
+    "valid_until": "2026-05-06T00:00:00+00:00",
+    "revoked_at": null,
+    "scope": [],
+    "version": 1
+  },
+  {
+    "subject": "P044",
+    "purposes": [
+      "direct_care",
+      "quality_improvement"
+    ],
+    "valid_from": "2023-04-28T00:00:00+00:00",
+    "valid_until": null,
+    "revoked_at": null,
+    "scope": [],
+    "version": 1
+  },
+  {
+    "subject": "P045",
+    "purposes": [
+      "direct_care"
+    ],
+    "valid_from": "2025-11-01T00:00:00+00:00",
+    "valid_until": null,
+    "revoked_at": null,
+    "scope": [
+      "progress_note",
+      "discharge_summary"
+    ],
+    "version": 1
+  },
+  {
+    "subject": "P047",
+    "purposes": [
+      "research"
+    ],
+    "valid_from": "2024-05-05T00:00:00+00:00",
+    "valid_until": "2026-05-11T00:00:00+00:00",
+    "revoked_at": null,
+    "scope": [
+      "progress_note"
+    ],
+    "version": 1
+  },
+  {
+    "subject": "P048",
+    "purposes": [
+      "direct_care"
+    ],
+    "valid_from": "2024-03-18T00:00:00+00:00",
+    "valid_until": null,
+    "revoked_at": "2025-10-26T00:00:00+00:00",
+    "scope": [],
+    "version": 2
+  },
+  {
+    "subject": "P049",
+    "purposes": [
+      "research",
+      "outreach"
+    ],
+    "valid_from": "2025-04-21T00:00:00+00:00",
+    "valid_until": null,
+    "revoked_at": null,
+    "scope": [],
+    "version": 1
+  },
+  {
+    "subject": "P050",
+    "purposes": [
+      "direct_care"
+    ],
+    "valid_from": "2026-08-21T00:00:00+00:00",
+    "valid_until": "2029-01-10T00:00:00+00:00",
+    "revoked_at": null,
+    "scope": [
+      "lab_report"
+    ],
+    "version": 1
+  },
+  {
+    "subject": "P051",
+    "purposes": [
+      "direct_care"
+    ],
+    "valid_from": "2024-10-24T00:00:00+00:00",
+    "valid_until": null,
+    "revoked_at": "2026-01-22T00:00:00+00:00",
+    "scope": [],
+    "version": 2
+  },
+  {
+    "subject": "P053",
+    "purposes": [
+      "direct_care"
+    ],
+    "valid_from": "2023-08-14T00:00:00+00:00",
+    "valid_until": null,
+    "revoked_at": null,
+    "scope": [
+      "lab_report"
+    ],
+    "version": 1
+  },
+  {
+    "subject": "P054",
+    "purposes": [
+      "direct_care",
+      "quality_improvement"
+    ],
+    "valid_from": "2024-11-30T00:00:00+00:00",
+    "valid_until": null,
+    "revoked_at": null,
+    "scope": [
+      "progress_note",
+      "discharge_summary"
+    ],
+    "version": 1
+  },
+  {
+    "subject": "P055",
+    "purposes": [
+      "research"
+    ],
+    "valid_from": "2023-12-27T00:00:00+00:00",
+    "valid_until": "2026-12-15T00:00:00+00:00",
+    "revoked_at": "2026-07-09T00:00:00+00:00",
+    "scope": [],
+    "version": 2
+  },
+  {
+    "subject": "P056",
+    "purposes": [
+      "research"
+    ],
+    "valid_from": "2023-10-05T00:00:00+00:00",
+    "valid_until": null,
+    "revoked_at": "2026-03-09T00:00:00+00:00",
+    "scope": [],
+    "version": 2
+  },
+  {
+    "subject": "P057",
+    "purposes": [
+      "research"
+    ],
+    "valid_from": "2024-02-02T00:00:00+00:00",
+    "valid_until": null,
+    "revoked_at": null,
+    "scope": [],
+    "version": 1
+  },
+  {
+    "subject": "P058",
+    "purposes": [
+      "direct_care"
+    ],
+    "valid_from": "2023-12-31T00:00:00+00:00",
+    "valid_until": null,
+    "revoked_at": null,
+    "scope": [],
+    "version": 1
+  },
+  {
+    "subject": "P059",
+    "purposes": [
+      "direct_care"
+    ],
+    "valid_from": "2024-04-30T00:00:00+00:00",
+    "valid_until": "2026-05-11T00:00:00+00:00",
+    "revoked_at": null,
+    "scope": [],
+    "version": 1
+  },
+  {
+    "subject": "P060",
+    "purposes": [
+      "research"
+    ],
+    "valid_from": "2024-06-30T00:00:00+00:00",
+    "valid_until": null,
+    "revoked_at": null,
+    "scope": [
+      "progress_note"
+    ],
+    "version": 1
+  },
+  {
+    "subject": "P061",
+    "purposes": [
+      "direct_care"
+    ],
+    "valid_from": "2025-12-19T00:00:00+00:00",
+    "valid_until": null,
+    "revoked_at": null,
+    "scope": [],
+    "version": 1
+  },
+  {
+    "subject": "P062",
+    "purposes": [
+      "research",
+      "outreach"
+    ],
+    "valid_from": "2023-07-02T00:00:00+00:00",
+    "valid_until": null,
+    "revoked_at": null,
+    "scope": [],
+    "version": 1
+  },
+  {
+    "subject": "P063",
+    "purposes": [
+      "research",
+      "outreach"
+    ],
+    "valid_from": "2026-01-06T00:00:00+00:00",
+    "valid_until": null,
+    "revoked_at": null,
+    "scope": [],
+    "version": 1
+  },
+  {
+    "subject": "P065",
+    "purposes": [
+      "direct_care"
+    ],
+    "valid_from": "2025-05-09T00:00:00+00:00",
+    "valid_until": null,
+    "revoked_at": null,
+    "scope": [
+      "progress_note",
+      "discharge_summary"
+    ],
+    "version": 1
+  },
+  {
+    "subject": "P066",
+    "purposes": [
+      "direct_care",
+      "quality_improvement"
+    ],
+    "valid_from": "2023-11-19T00:00:00+00:00",
+    "valid_until": "2027-09-09T00:00:00+00:00",
+    "revoked_at": null,
+    "scope": [],
+    "version": 1
+  },
+  {
+    "subject": "P067",
+    "purposes": [
+      "direct_care",
+      "quality_improvement"
+    ],
+    "valid_from": "2025-07-08T00:00:00+00:00",
+    "valid_until": null,
+    "revoked_at": null,
+    "scope": [],
+    "version": 1
+  },
+  {
+    "subject": "P069",
+    "purposes": [
+      "research"
+    ],
+    "valid_from": "2023-07-05T00:00:00+00:00",
+    "valid_until": null,
+    "revoked_at": null,
+    "scope": [],
+    "version": 1
+  },
+  {
+    "subject": "P070",
+    "purposes": [
+      "direct_care"
+    ],
+    "valid_from": "2024-03-27T00:00:00+00:00",
+    "valid_until": "2026-04-11T00:00:00+00:00",
+    "revoked_at": null,
+    "scope": [
+      "progress_note"
+    ],
+    "version": 1
+  },
+  {
+    "subject": "P073",
+    "purposes": [
+      "direct_care",
+      "research"
+    ],
+    "valid_from": "2024-02-07T00:00:00+00:00",
+    "valid_until": "2028-04-27T00:00:00+00:00",
+    "revoked_at": "2025-12-08T00:00:00+00:00",
+    "scope": [],
+    "version": 2
+  },
+  {
+    "subject": "P074",
+    "purposes": [
+      "research"
+    ],
+    "valid_from": "2023-06-04T00:00:00+00:00",
+    "valid_until": null,
+    "revoked_at": "2026-01-27T00:00:00+00:00",
+    "scope": [
+      "progress_note"
+    ],
+    "version": 2
+  },
+  {
+    "subject": "P075",
+    "purposes": [
+      "direct_care"
+    ],
+    "valid_from": "2023-05-30T00:00:00+00:00",
+    "valid_until": null,
+    "revoked_at": "2026-03-07T00:00:00+00:00",
+    "scope": [],
+    "version": 2
+  },
+  {
+    "subject": "P076",
+    "purposes": [
+      "research"
+    ],
+    "valid_from": "2024-06-05T00:00:00+00:00",
+    "valid_until": null,
+    "revoked_at": null,
+    "scope": [],
+    "version": 1
+  },
+  {
+    "subject": "P077",
+    "purposes": [
+      "research"
+    ],
+    "valid_from": "2024-10-16T00:00:00+00:00",
+    "valid_until": "2027-02-02T00:00:00+00:00",
+    "revoked_at": null,
+    "scope": [],
+    "version": 1
+  },
+  {
+    "subject": "P079",
+    "purposes": [
+      "research",
+      "outreach"
+    ],
+    "valid_from": "2026-01-19T00:00:00+00:00",
+    "valid_until": null,
+    "revoked_at": null,
+    "scope": [
+      "progress_note",
+      "discharge_summary"
+    ],
+    "version": 1
+  },
+  {
+    "subject": "P081",
+    "purposes": [
+      "research"
+    ],
+    "valid_from": "2024-12-05T00:00:00+00:00",
+    "valid_until": "2028-06-09T00:00:00+00:00",
+    "revoked_at": null,
+    "scope": [],
+    "version": 1
+  },
+  {
+    "subject": "P082",
+    "purposes": [
+      "direct_care",
+      "quality_improvement"
+    ],
+    "valid_from": "2025-05-01T00:00:00+00:00",
+    "valid_until": null,
+    "revoked_at": null,
+    "scope": [],
+    "version": 1
+  },
+  {
+    "subject": "P083",
+    "purposes": [
+      "direct_care",
+      "quality_improvement"
+    ],
+    "valid_from": "2025-08-27T00:00:00+00:00",
+    "valid_until": "2028-03-08T00:00:00+00:00",
+    "revoked_at": null,
+    "scope": [],
+    "version": 1
+  },
+  {
+    "subject": "P085",
+    "purposes": [
+      "direct_care",
+      "research"
+    ],
+    "valid_from": "2023-04-12T00:00:00+00:00",
+    "valid_until": "2026-03-19T00:00:00+00:00",
+    "revoked_at": null,
+    "scope": [
+      "progress_note"
+    ],
+    "version": 1
+  },
+  {
+    "subject": "P086",
+    "purposes": [
+      "direct_care",
+      "research"
+    ],
+    "valid_from": "2025-03-09T00:00:00+00:00",
+    "valid_until": null,
+    "revoked_at": "2025-10-20T00:00:00+00:00",
+    "scope": [
+      "progress_note",
+      "discharge_summary"
+    ],
+    "version": 2
+  },
+  {
+    "subject": "P087",
+    "purposes": [
+      "direct_care",
+      "research"
+    ],
+    "valid_from": "2024-05-17T00:00:00+00:00",
+    "valid_until": null,
+    "revoked_at": "2026-02-20T00:00:00+00:00",
+    "scope": [
+      "progress_note",
+      "discharge_summary"
+    ],
+    "version": 2
+  },
+  {
+    "subject": "P088",
+    "purposes": [
+      "direct_care",
+      "quality_improvement"
+    ],
+    "valid_from": "2023-11-01T00:00:00+00:00",
+    "valid_until": "2026-11-11T00:00:00+00:00",
+    "revoked_at": null,
+    "scope": [],
+    "version": 1
+  },
+  {
+    "subject": "P090",
+    "purposes": [
+      "direct_care"
+    ],
+    "valid_from": "2024-03-07T00:00:00+00:00",
+    "valid_until": "2027-05-27T00:00:00+00:00",
+    "revoked_at": null,
+    "scope": [],
+    "version": 1
+  },
+  {
+    "subject": "P091",
+    "purposes": [
+      "direct_care"
+    ],
+    "valid_from": "2024-01-05T00:00:00+00:00",
+    "valid_until": "2026-05-17T00:00:00+00:00",
+    "revoked_at": null,
+    "scope": [
+      "lab_report"
+    ],
+    "version": 1
+  },
+  {
+    "subject": "P092",
+    "purposes": [
+      "direct_care",
+      "research"
+    ],
+    "valid_from": "2024-07-20T00:00:00+00:00",
+    "valid_until": "2026-05-02T00:00:00+00:00",
+    "revoked_at": null,
+    "scope": [
+      "lab_report"
+    ],
+    "version": 1
+  },
+  {
+    "subject": "P093",
+    "purposes": [
+      "direct_care"
+    ],
+    "valid_from": "2023-11-24T00:00:00+00:00",
+    "valid_until": "2028-08-26T00:00:00+00:00",
+    "revoked_at": null,
+    "scope": [],
+    "version": 1
+  },
+  {
+    "subject": "P094",
+    "purposes": [
+      "direct_care"
+    ],
+    "valid_from": "2026-01-30T00:00:00+00:00",
+    "valid_until": null,
+    "revoked_at": null,
+    "scope": [],
+    "version": 1
+  },
+  {
+    "subject": "P095",
+    "purposes": [
+      "direct_care"
+    ],
+    "valid_from": "2024-08-26T00:00:00+00:00",
+    "valid_until": null,
+    "revoked_at": null,
+    "scope": [],
+    "version": 1
+  },
+  {
+    "subject": "P097",
+    "purposes": [
+      "direct_care"
+    ],
+    "valid_from": "2025-12-31T00:00:00+00:00",
+    "valid_until": null,
+    "revoked_at": null,
+    "scope": [],
+    "version": 1
+  },
+  {
+    "subject": "P098",
+    "purposes": [
+      "research"
+    ],
+    "valid_from": "2023-03-02T00:00:00+00:00",
+    "valid_until": "2025-11-10T00:00:00+00:00",
+    "revoked_at": null,
+    "scope": [
+      "progress_note",
+      "discharge_summary"
+    ],
+    "version": 1
+  },
+  {
+    "subject": "P099",
+    "purposes": [
+      "research"
+    ],
+    "valid_from": "2024-01-29T00:00:00+00:00",
+    "valid_until": "2026-01-29T00:00:00+00:00",
+    "revoked_at": null,
+    "scope": [],
+    "version": 1
+  },
+  {
+    "subject": "P100",
+    "purposes": [
+      "research"
+    ],
+    "valid_from": "2024-06-02T00:00:00+00:00",
+    "valid_until": null,
+    "revoked_at": "2025-07-08T00:00:00+00:00",
+    "scope": [
+      "progress_note"
+    ],
+    "version": 2
+  },
+  {
+    "subject": "P101",
+    "purposes": [
+      "direct_care"
+    ],
+    "valid_from": "2024-11-14T00:00:00+00:00",
+    "valid_until": "2028-03-09T00:00:00+00:00",
+    "revoked_at": null,
+    "scope": [],
+    "version": 1
+  },
+  {
+    "subject": "P102",
+    "purposes": [
+      "direct_care",
+      "research"
+    ],
+    "valid_from": "2023-11-22T00:00:00+00:00",
+    "valid_until": "2025-12-24T00:00:00+00:00",
+    "revoked_at": null,
+    "scope": [],
+    "version": 1
+  },
+  {
+    "subject": "P104",
+    "purposes": [
+      "direct_care",
+      "research"
+    ],
+    "valid_from": "2026-09-15T00:00:00+00:00",
+    "valid_until": null,
+    "revoked_at": null,
+    "scope": [],
+    "version": 1
+  },
+  {
+    "subject": "P105",
+    "purposes": [
+      "research"
+    ],
+    "valid_from": "2024-01-08T00:00:00+00:00",
+    "valid_until": "2025-11-05T00:00:00+00:00",
+    "revoked_at": null,
+    "scope": [],
+    "version": 1
+  },
+  {
+    "subject": "P106",
+    "purposes": [
+      "direct_care",
+      "quality_improvement"
+    ],
+    "valid_from": "2025-02-17T00:00:00+00:00",
+    "valid_until": "2027-11-21T00:00:00+00:00",
+    "revoked_at": null,
+    "scope": [],
+    "version": 1
+  },
+  {
+    "subject": "P107",
+    "purposes": [
+      "direct_care"
+    ],
+    "valid_from": "2025-09-03T00:00:00+00:00",
+    "valid_until": null,
+    "revoked_at": null,
+    "scope": [],
+    "version": 1
+  },
+  {
+    "subject": "P108",
+    "purposes": [
+      "direct_care"
+    ],
+    "valid_from": "2025-09-06T00:00:00+00:00",
+    "valid_until": "2027-06-13T00:00:00+00:00",
+    "revoked_at": null,
+    "scope": [
+      "progress_note",
+      "discharge_summary"
+    ],
+    "version": 1
+  },
+  {
+    "subject": "P109",
+    "purposes": [
+      "direct_care",
+      "quality_improvement"
+    ],
+    "valid_from": "2024-10-01T00:00:00+00:00",
+    "valid_until": "2027-12-26T00:00:00+00:00",
+    "revoked_at": null,
+    "scope": [],
+    "version": 1
+  },
+  {
+    "subject": "P110",
+    "purposes": [
+      "research"
+    ],
+    "valid_from": "2023-08-07T00:00:00+00:00",
+    "valid_until": null,
+    "revoked_at": null,
+    "scope": [],
+    "version": 1
+  },
+  {
+    "subject": "P111",
+    "purposes": [
+      "direct_care"
+    ],
+    "valid_from": "2023-06-19T00:00:00+00:00",
+    "valid_until": "2029-01-13T00:00:00+00:00",
+    "revoked_at": null,
+    "scope": [],
+    "version": 1
+  },
+  {
+    "subject": "P112",
+    "purposes": [
+      "research"
+    ],
+    "valid_from": "2027-02-18T00:00:00+00:00",
+    "valid_until": "2028-05-09T00:00:00+00:00",
+    "revoked_at": null,
+    "scope": [],
+    "version": 1
+  },
+  {
+    "subject": "P113",
+    "purposes": [
+      "direct_care",
+      "research"
+    ],
+    "valid_from": "2023-06-03T00:00:00+00:00",
+    "valid_until": null,
+    "revoked_at": "2026-01-29T00:00:00+00:00",
+    "scope": [
+      "progress_note",
+      "discharge_summary"
+    ],
+    "version": 2
+  },
+  {
+    "subject": "P114",
+    "purposes": [
+      "direct_care"
+    ],
+    "valid_from": "2024-06-17T00:00:00+00:00",
+    "valid_until": null,
+    "revoked_at": null,
+    "scope": [],
+    "version": 1
+  },
+  {
+    "subject": "P115",
+    "purposes": [
+      "research"
+    ],
+    "valid_from": "2025-01-21T00:00:00+00:00",
+    "valid_until": null,
+    "revoked_at": "2025-11-09T00:00:00+00:00",
+    "scope": [],
+    "version": 2
+  },
+  {
+    "subject": "P116",
+    "purposes": [
+      "direct_care"
+    ],
+    "valid_from": "2024-12-02T00:00:00+00:00",
+    "valid_until": null,
+    "revoked_at": null,
+    "scope": [],
+    "version": 1
+  },
+  {
+    "subject": "P117",
+    "purposes": [
+      "direct_care"
+    ],
+    "valid_from": "2025-03-29T00:00:00+00:00",
+    "valid_until": "2027-01-13T00:00:00+00:00",
+    "revoked_at": null,
+    "scope": [],
+    "version": 1
+  },
+  {
+    "subject": "P118",
+    "purposes": [
+      "direct_care"
+    ],
+    "valid_from": "2024-02-08T00:00:00+00:00",
+    "valid_until": null,
+    "revoked_at": null,
+    "scope": [],
+    "version": 1
+  },
+  {
+    "subject": "P119",
+    "purposes": [
+      "direct_care",
+      "quality_improvement"
+    ],
+    "valid_from": "2024-02-16T00:00:00+00:00",
+    "valid_until": null,
+    "revoked_at": null,
+    "scope": [],
+    "version": 1
+  },
+  {
+    "subject": "P120",
+    "purposes": [
+      "direct_care",
+      "research"
+    ],
+    "valid_from": "2023-11-26T00:00:00+00:00",
+    "valid_until": "2028-05-14T00:00:00+00:00",
+    "revoked_at": "2026-03-09T00:00:00+00:00",
+    "scope": [],
+    "version": 2
+  },
+  {
+    "subject": "P121",
+    "purposes": [
+      "research"
+    ],
+    "valid_from": "2025-05-04T00:00:00+00:00",
+    "valid_until": null,
+    "revoked_at": null,
+    "scope": [],
+    "version": 1
+  },
+  {
+    "subject": "P122",
+    "purposes": [
+      "research"
+    ],
+    "valid_from": "2023-09-07T00:00:00+00:00",
+    "valid_until": null,
+    "revoked_at": null,
+    "scope": [],
+    "version": 1
+  },
+  {
+    "subject": "P124",
+    "purposes": [
+      "direct_care",
+      "quality_improvement"
+    ],
+    "valid_from": "2024-05-16T00:00:00+00:00",
+    "valid_until": null,
+    "revoked_at": null,
+    "scope": [],
+    "version": 1
+  },
+  {
+    "subject": "P126",
+    "purposes": [
+      "research"
+    ],
+    "valid_from": "2023-06-14T00:00:00+00:00",
+    "valid_until": null,
+    "revoked_at": null,
+    "scope": [],
+    "version": 1
+  },
+  {
+    "subject": "P127",
+    "purposes": [
+      "research",
+      "outreach"
+    ],
+    "valid_from": "2024-07-08T00:00:00+00:00",
+    "valid_until": null,
+    "revoked_at": null,
+    "scope": [
+      "progress_note"
+    ],
+    "version": 1
+  },
+  {
+    "subject": "P128",
+    "purposes": [
+      "research"
+    ],
+    "valid_from": "2024-07-04T00:00:00+00:00",
+    "valid_until": "2027-02-04T00:00:00+00:00",
+    "revoked_at": null,
+    "scope": [],
+    "version": 1
+  },
+  {
+    "subject": "P129",
+    "purposes": [
+      "direct_care"
+    ],
+    "valid_from": "2025-03-22T00:00:00+00:00",
+    "valid_until": null,
+    "revoked_at": null,
+    "scope": [],
+    "version": 1
+  },
+  {
+    "subject": "P131",
+    "purposes": [
+      "direct_care"
+    ],
+    "valid_from": "2026-12-23T00:00:00+00:00",
+    "valid_until": "2027-11-28T00:00:00+00:00",
+    "revoked_at": null,
+    "scope": [],
+    "version": 1
+  },
+  {
+    "subject": "P132",
+    "purposes": [
+      "direct_care",
+      "quality_improvement"
+    ],
+    "valid_from": "2024-09-19T00:00:00+00:00",
+    "valid_until": "2028-08-24T00:00:00+00:00",
+    "revoked_at": null,
+    "scope": [],
+    "version": 1
+  },
+  {
+    "subject": "P133",
+    "purposes": [
+      "direct_care"
+    ],
+    "valid_from": "2023-07-05T00:00:00+00:00",
+    "valid_until": null,
+    "revoked_at": null,
+    "scope": [
+      "progress_note"
+    ],
+    "version": 1
+  },
+  {
+    "subject": "P134",
+    "purposes": [
+      "direct_care"
+    ],
+    "valid_from": "2024-08-15T00:00:00+00:00",
+    "valid_until": "2025-11-14T00:00:00+00:00",
+    "revoked_at": null,
+    "scope": [],
+    "version": 1
+  },
+  {
+    "subject": "P135",
+    "purposes": [
+      "direct_care"
+    ],
+    "valid_from": "2023-10-25T00:00:00+00:00",
+    "valid_until": "2027-11-26T00:00:00+00:00",
+    "revoked_at": null,
+    "scope": [
+      "progress_note"
+    ],
+    "version": 1
+  },
+  {
+    "subject": "P136",
+    "purposes": [
+      "direct_care"
+    ],
+    "valid_from": "2023-11-22T00:00:00+00:00",
+    "valid_until": null,
+    "revoked_at": null,
+    "scope": [],
+    "version": 1
+  },
+  {
+    "subject": "P137",
+    "purposes": [
+      "direct_care",
+      "research"
+    ],
+    "valid_from": "2023-12-19T00:00:00+00:00",
+    "valid_until": null,
+    "revoked_at": "2025-12-30T00:00:00+00:00",
+    "scope": [],
+    "version": 2
+  },
+  {
+    "subject": "P138",
+    "purposes": [
+      "research"
+    ],
+    "valid_from": "2024-11-03T00:00:00+00:00",
+    "valid_until": "2027-08-11T00:00:00+00:00",
+    "revoked_at": "2025-08-02T00:00:00+00:00",
+    "scope": [],
+    "version": 2
+  },
+  {
+    "subject": "P139",
+    "purposes": [
+      "research"
+    ],
+    "valid_from": "2025-07-01T00:00:00+00:00",
+    "valid_until": null,
+    "revoked_at": null,
+    "scope": [
+      "progress_note",
+      "discharge_summary"
+    ],
+    "version": 1
+  },
+  {
+    "subject": "P140",
+    "purposes": [
+      "direct_care",
+      "research"
+    ],
+    "valid_from": "2024-07-15T00:00:00+00:00",
+    "valid_until": "2026-05-07T00:00:00+00:00",
+    "revoked_at": null,
+    "scope": [
+      "progress_note",
+      "discharge_summary"
+    ],
+    "version": 1
+  },
+  {
+    "subject": "P141",
+    "purposes": [
+      "research"
+    ],
+    "valid_from": "2024-05-06T00:00:00+00:00",
+    "valid_until": null,
+    "revoked_at": null,
+    "scope": [
+      "progress_note"
+    ],
+    "version": 1
+  },
+  {
+    "subject": "P143",
+    "purposes": [
+      "direct_care"
+    ],
+    "valid_from": "2024-05-04T00:00:00+00:00",
+    "valid_until": "2028-01-10T00:00:00+00:00",
+    "revoked_at": null,
+    "scope": [],
+    "version": 1
+  },
+  {
+    "subject": "P145",
+    "purposes": [
+      "direct_care"
+    ],
+    "valid_from": "2024-11-21T00:00:00+00:00",
+    "valid_until": "2028-04-29T00:00:00+00:00",
+    "revoked_at": null,
+    "scope": [],
+    "version": 1
+  },
+  {
+    "subject": "P146",
+    "purposes": [
+      "direct_care"
+    ],
+    "valid_from": "2023-08-12T00:00:00+00:00",
+    "valid_until": "2028-05-05T00:00:00+00:00",
+    "revoked_at": null,
+    "scope": [],
+    "version": 1
+  },
+  {
+    "subject": "P147",
+    "purposes": [
+      "research"
+    ],
+    "valid_from": "2022-10-09T00:00:00+00:00",
+    "valid_until": "2026-03-19T00:00:00+00:00",
+    "revoked_at": null,
+    "scope": [],
+    "version": 1
+  },
+  {
+    "subject": "P148",
+    "purposes": [
+      "direct_care"
+    ],
+    "valid_from": "2024-09-28T00:00:00+00:00",
+    "valid_until": null,
+    "revoked_at": null,
+    "scope": [],
+    "version": 1
+  },
+  {
+    "subject": "P149",
+    "purposes": [
+      "direct_care",
+      "quality_improvement"
+    ],
+    "valid_from": "2023-11-16T00:00:00+00:00",
+    "valid_until": "2028-01-01T00:00:00+00:00",
+    "revoked_at": null,
+    "scope": [],
+    "version": 1
+  },
+  {
+    "subject": "P150",
+    "purposes": [
+      "research"
+    ],
+    "valid_from": "2025-04-27T00:00:00+00:00",
+    "valid_until": "2028-10-11T00:00:00+00:00",
+    "revoked_at": null,
+    "scope": [],
+    "version": 1
+  },
+  {
+    "subject": "P151",
+    "purposes": [
+      "research"
+    ],
+    "valid_from": "2023-02-27T00:00:00+00:00",
+    "valid_until": "2026-02-23T00:00:00+00:00",
+    "revoked_at": null,
+    "scope": [],
+    "version": 1
+  },
+  {
+    "subject": "P152",
+    "purposes": [
+      "direct_care"
+    ],
+    "valid_from": "2025-07-20T00:00:00+00:00",
+    "valid_until": "2027-11-10T00:00:00+00:00",
+    "revoked_at": null,
+    "scope": [],
+    "version": 1
+  },
+  {
+    "subject": "P153",
+    "purposes": [
+      "direct_care"
+    ],
+    "valid_from": "2024-07-27T00:00:00+00:00",
+    "valid_until": null,
+    "revoked_at": "2026-01-29T00:00:00+00:00",
+    "scope": [
+      "lab_report"
+    ],
+    "version": 2
+  },
+  {
+    "subject": "P154",
+    "purposes": [
+      "direct_care"
+    ],
+    "valid_from": "2025-02-22T00:00:00+00:00",
+    "valid_until": "2027-06-08T00:00:00+00:00",
+    "revoked_at": null,
+    "scope": [],
+    "version": 1
+  },
+  {
+    "subject": "P155",
+    "purposes": [
+      "direct_care"
+    ],
+    "valid_from": "2024-04-08T00:00:00+00:00",
+    "valid_until": null,
+    "revoked_at": null,
+    "scope": [],
+    "version": 1
+  },
+  {
+    "subject": "P156",
+    "purposes": [
+      "direct_care"
+    ],
+    "valid_from": "2024-09-30T00:00:00+00:00",
+    "valid_until": null,
+    "revoked_at": null,
+    "scope": [],
+    "version": 1
+  },
+  {
+    "subject": "P157",
+    "purposes": [
+      "direct_care",
+      "quality_improvement"
+    ],
+    "valid_from": "2025-09-17T00:00:00+00:00",
+    "valid_until": "2026-11-12T00:00:00+00:00",
+    "revoked_at": null,
+    "scope": [],
+    "version": 1
+  },
+  {
+    "subject": "P158",
+    "purposes": [
+      "research"
+    ],
+    "valid_from": "2024-03-21T00:00:00+00:00",
+    "valid_until": null,
+    "revoked_at": "2026-06-24T00:00:00+00:00",
+    "scope": [],
+    "version": 2
+  },
+  {
+    "subject": "P159",
+    "purposes": [
+      "direct_care"
+    ],
+    "valid_from": "2024-10-08T00:00:00+00:00",
+    "valid_until": "2027-09-29T00:00:00+00:00",
+    "revoked_at": null,
+    "scope": [],
+    "version": 1
+  },
+  {
+    "subject": "P160",
+    "purposes": [
+      "direct_care"
+    ],
+    "valid_from": "2025-08-09T00:00:00+00:00",
+    "valid_until": null,
+    "revoked_at": null,
+    "scope": [],
+    "version": 1
+  },
+  {
+    "subject": "P161",
+    "purposes": [
+      "direct_care"
+    ],
+    "valid_from": "2024-06-03T00:00:00+00:00",
+    "valid_until": null,
+    "revoked_at": null,
+    "scope": [
+      "lab_report"
+    ],
+    "version": 1
+  },
+  {
+    "subject": "P162",
+    "purposes": [
+      "direct_care"
+    ],
+    "valid_from": "2023-01-03T00:00:00+00:00",
+    "valid_until": "2026-01-11T00:00:00+00:00",
+    "revoked_at": null,
+    "scope": [
+      "progress_note",
+      "discharge_summary"
+    ],
+    "version": 1
+  },
+  {
+    "subject": "P163",
+    "purposes": [
+      "direct_care",
+      "quality_improvement"
+    ],
+    "valid_from": "2023-08-12T00:00:00+00:00",
+    "valid_until": "2027-02-16T00:00:00+00:00",
+    "revoked_at": null,
+    "scope": [],
+    "version": 1
+  },
+  {
+    "subject": "P164",
+    "purposes": [
+      "direct_care",
+      "research"
+    ],
+    "valid_from": "2024-11-05T00:00:00+00:00",
+    "valid_until": null,
+    "revoked_at": "2025-11-08T00:00:00+00:00",
+    "scope": [
+      "progress_note",
+      "discharge_summary"
+    ],
+    "version": 2
+  },
+  {
+    "subject": "P165",
+    "purposes": [
+      "direct_care"
+    ],
+    "valid_from": "2025-04-30T00:00:00+00:00",
+    "valid_until": "2028-06-01T00:00:00+00:00",
+    "revoked_at": null,
+    "scope": [],
+    "version": 1
+  },
+  {
+    "subject": "P167",
+    "purposes": [
+      "direct_care"
+    ],
+    "valid_from": "2023-08-01T00:00:00+00:00",
+    "valid_until": null,
+    "revoked_at": "2025-11-21T00:00:00+00:00",
+    "scope": [],
+    "version": 2
+  },
+  {
+    "subject": "P168",
+    "purposes": [
+      "direct_care",
+      "quality_improvement"
+    ],
+    "valid_from": "2024-08-09T00:00:00+00:00",
+    "valid_until": "2028-04-26T00:00:00+00:00",
+    "revoked_at": null,
+    "scope": [],
+    "version": 1
+  },
+  {
+    "subject": "P169",
+    "purposes": [
+      "research"
+    ],
+    "valid_from": "2026-11-23T00:00:00+00:00",
+    "valid_until": "2029-02-05T00:00:00+00:00",
+    "revoked_at": null,
+    "scope": [],
+    "version": 1
+  },
+  {
+    "subject": "P170",
+    "purposes": [
+      "research"
+    ],
+    "valid_from": "2023-01-01T00:00:00+00:00",
+    "valid_until": "2025-10-21T00:00:00+00:00",
+    "revoked_at": null,
+    "scope": [
+      "progress_note",
+      "discharge_summary"
+    ],
+    "version": 1
+  },
+  {
+    "subject": "P171",
+    "purposes": [
+      "direct_care"
+    ],
+    "valid_from": "2024-07-24T00:00:00+00:00",
+    "valid_until": "2028-01-26T00:00:00+00:00",
+    "revoked_at": null,
+    "scope": [],
+    "version": 1
+  },
+  {
+    "subject": "P172",
+    "purposes": [
+      "direct_care"
+    ],
+    "valid_from": "2025-03-13T00:00:00+00:00",
+    "valid_until": null,
+    "revoked_at": "2026-06-27T00:00:00+00:00",
+    "scope": [],
+    "version": 2
+  },
+  {
+    "subject": "P173",
+    "purposes": [
+      "research",
+      "outreach"
+    ],
+    "valid_from": "2026-01-15T00:00:00+00:00",
+    "valid_until": null,
+    "revoked_at": null,
+    "scope": [],
+    "version": 1
+  },
+  {
+    "subject": "P174",
+    "purposes": [
+      "direct_care"
+    ],
+    "valid_from": "2023-10-11T00:00:00+00:00",
+    "valid_until": null,
+    "revoked_at": null,
+    "scope": [],
+    "version": 1
+  },
+  {
+    "subject": "P175",
+    "purposes": [
+      "direct_care",
+      "research"
+    ],
+    "valid_from": "2022-11-10T00:00:00+00:00",
+    "valid_until": "2026-03-07T00:00:00+00:00",
+    "revoked_at": null,
+    "scope": [
+      "progress_note",
+      "discharge_summary"
+    ],
+    "version": 1
+  },
+  {
+    "subject": "P176",
+    "purposes": [
+      "research",
+      "outreach"
+    ],
+    "valid_from": "2025-03-16T00:00:00+00:00",
+    "valid_until": "2027-05-25T00:00:00+00:00",
+    "revoked_at": null,
+    "scope": [],
+    "version": 1
+  },
+  {
+    "subject": "P178",
+    "purposes": [
+      "direct_care"
+    ],
+    "valid_from": "2025-09-28T00:00:00+00:00",
+    "valid_until": null,
+    "revoked_at": null,
+    "scope": [],
+    "version": 1
+  },
+  {
+    "subject": "P179",
+    "purposes": [
+      "direct_care"
+    ],
+    "valid_from": "2025-01-01T00:00:00+00:00",
+    "valid_until": null,
+    "revoked_at": null,
+    "scope": [],
+    "version": 1
+  },
+  {
+    "subject": "P180",
+    "purposes": [
+      "research"
+    ],
+    "valid_from": "2026-11-19T00:00:00+00:00",
+    "valid_until": null,
+    "revoked_at": null,
+    "scope": [
+      "progress_note",
+      "discharge_summary"
+    ],
+    "version": 1
+  },
+  {
+    "subject": "P181",
+    "purposes": [
+      "research"
+    ],
+    "valid_from": "2026-01-22T00:00:00+00:00",
+    "valid_until": null,
+    "revoked_at": null,
+    "scope": [
+      "progress_note",
+      "discharge_summary"
+    ],
+    "version": 1
+  },
+  {
+    "subject": "P182",
+    "purposes": [
+      "direct_care"
+    ],
+    "valid_from": "2024-01-11T00:00:00+00:00",
+    "valid_until": null,
+    "revoked_at": "2026-01-18T00:00:00+00:00",
+    "scope": [],
+    "version": 2
+  },
+  {
+    "subject": "P184",
+    "purposes": [
+      "research"
+    ],
+    "valid_from": "2023-11-23T00:00:00+00:00",
+    "valid_until": null,
+    "revoked_at": "2025-11-23T00:00:00+00:00",
+    "scope": [],
+    "version": 2
+  },
+  {
+    "subject": "P185",
+    "purposes": [
+      "direct_care"
+    ],
+    "valid_from": "2024-11-27T00:00:00+00:00",
+    "valid_until": null,
+    "revoked_at": null,
+    "scope": [],
+    "version": 1
+  },
+  {
+    "subject": "P187",
+    "purposes": [
+      "direct_care"
+    ],
+    "valid_from": "2026-12-09T00:00:00+00:00",
+    "valid_until": null,
+    "revoked_at": null,
+    "scope": [],
+    "version": 1
+  },
+  {
+    "subject": "P188",
+    "purposes": [
+      "direct_care",
+      "quality_improvement"
+    ],
+    "valid_from": "2024-03-30T00:00:00+00:00",
+    "valid_until": null,
+    "revoked_at": null,
+    "scope": [],
+    "version": 1
+  },
+  {
+    "subject": "P189",
+    "purposes": [
+      "direct_care"
+    ],
+    "valid_from": "2025-08-04T00:00:00+00:00",
+    "valid_until": null,
+    "revoked_at": null,
+    "scope": [],
+    "version": 1
+  },
+  {
+    "subject": "P190",
+    "purposes": [
+      "direct_care"
+    ],
+    "valid_from": "2024-08-09T00:00:00+00:00",
+    "valid_until": "2028-11-11T00:00:00+00:00",
+    "revoked_at": null,
+    "scope": [],
+    "version": 1
+  },
+  {
+    "subject": "P191",
+    "purposes": [
+      "research"
+    ],
+    "valid_from": "2026-01-28T00:00:00+00:00",
+    "valid_until": "2027-06-13T00:00:00+00:00",
+    "revoked_at": null,
+    "scope": [
+      "lab_report"
+    ],
+    "version": 1
+  },
+  {
+    "subject": "P192",
+    "purposes": [
+      "direct_care"
+    ],
+    "valid_from": "2026-08-23T00:00:00+00:00",
+    "valid_until": "2028-06-28T00:00:00+00:00",
+    "revoked_at": null,
+    "scope": [
+      "progress_note",
+      "discharge_summary"
+    ],
+    "version": 1
+  },
+  {
+    "subject": "P193",
+    "purposes": [
+      "direct_care",
+      "quality_improvement"
+    ],
+    "valid_from": "2025-08-16T00:00:00+00:00",
+    "valid_until": null,
+    "revoked_at": null,
+    "scope": [],
+    "version": 1
+  },
+  {
+    "subject": "P194",
+    "purposes": [
+      "direct_care"
+    ],
+    "valid_from": "2025-07-05T00:00:00+00:00",
+    "valid_until": null,
+    "revoked_at": null,
+    "scope": [
+      "progress_note"
+    ],
+    "version": 1
+  },
+  {
+    "subject": "P195",
+    "purposes": [
+      "research",
+      "outreach"
+    ],
+    "valid_from": "2025-09-12T00:00:00+00:00",
+    "valid_until": "2027-04-15T00:00:00+00:00",
+    "revoked_at": null,
+    "scope": [],
+    "version": 1
+  },
+  {
+    "subject": "P196",
+    "purposes": [
+      "research"
+    ],
+    "valid_from": "2023-06-24T00:00:00+00:00",
+    "valid_until": null,
+    "revoked_at": "2025-07-02T00:00:00+00:00",
+    "scope": [],
+    "version": 2
+  },
+  {
+    "subject": "P199",
+    "purposes": [
+      "direct_care"
+    ],
+    "valid_from": "2025-05-08T00:00:00+00:00",
+    "valid_until": null,
+    "revoked_at": null,
+    "scope": [
+      "progress_note",
+      "discharge_summary"
+    ],
+    "version": 1
+  },
+  {
+    "subject": "P200",
+    "purposes": [
+      "direct_care"
+    ],
+    "valid_from": "2025-10-22T00:00:00+00:00",
+    "valid_until": "2027-08-25T00:00:00+00:00",
+    "revoked_at": null,
+    "scope": [],
+    "version": 1
+  }
+]
