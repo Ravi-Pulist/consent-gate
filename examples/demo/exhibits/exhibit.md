@@ -93,15 +93,15 @@ USE TEMP B-TREE FOR ORDER BY
 
 ## Revocation, measured
 
-Mid-session revocation of `P001` with caches warm. Every surface dark: **True**. Worst surface: **0.0839 s**.
+Mid-session revocation of `P001` with caches warm. Every surface dark: **True**. Worst surface: **0.0755 s**.
 
 | surface | visible before | visible after | seconds to dark |
 |---|---|---|---|
-| vector+keyword search | True | False | 0.0839 |
-| result cache | True | False | 0.0002 |
-| prompt context | True | False | 0.0003 |
-| aggregates | True | False | 0.0033 |
-| stratum membership | True | False | 0.0033 |
+| vector+keyword search | True | False | 0.0755 |
+| result cache | True | False | 0.0001 |
+| prompt context | True | False | 0.0002 |
+| aggregates | True | False | 0.0022 |
+| stratum membership | True | False | 0.0018 |
 
 > A surface that was never visible before revocation proves nothing about revocation, so it is not counted as a pass.
 

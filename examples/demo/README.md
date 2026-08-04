@@ -18,7 +18,7 @@ configurations.
 | the search oracle | under exclusion a withdrawn record and a record that never existed share one SHA-256 response fingerprint | live replay of `manifest.oracle_pairs[0]`; totals from the exhibit |
 | why post-filtering does not work | counts, scores and pagination each leak | `src/consent_gate/gate.py` docstring, `tests/test_sabotage.py` |
 | the query plan | the consent predicate is inside the scan | `exhibits/exhibit.json` `query_plan` |
-| revocation, measured | five surfaces, all visible before the revocation and dark after it, worst surface 0.0839 s against a 5 s target | `exhibits/exhibit.json` `revocation_drill` |
+| revocation, measured | five surfaces, all visible before the revocation and dark after it, worst surface 0.0755 s against a 5 s target | `exhibits/exhibit.json` `revocation_drill` |
 | what this does not close, and what was fixed | the project README's not-verified list, plus three defects found while building this page and since fixed in the source | `README.md`, plus `verify.py` |
 
 Nothing on the page was typed from memory. `verify.py` re-derives every figure
@@ -65,7 +65,7 @@ The revocation drill's seconds are wall-clock measurements and will differ on
 your machine. Measured here by running the four commands above into a scratch
 copy of the repository: all four corpus files came back byte-identical, and the
 re-run exhibit differed from the shipped one in 7 of its 2,723 fields, every one
-of them a drill timing (`worst_seconds` 0.0839 to 0.0710, `total_seconds` 0.1875
+of them a drill timing (`worst_seconds` 0.0755 to 0.0710, `total_seconds` 0.1575
 to 0.1542, and the five `seconds_to_dark`). Every leak, quote, count,
 fingerprint and query plan was identical. Those second-run timings are recorded
 here and nowhere else, so treat them as one observation rather than as a

@@ -1,6 +1,7 @@
 {
   "purpose": "direct_care",
   "when": "2026-08-04T00:00:00+00:00",
+  "engine": "sqlite",
   "counts": {
     "patients": 200,
     "documents": 1000,
@@ -3773,43 +3774,43 @@
     "subject": "P001",
     "purpose": "direct_care",
     "all_dark": true,
-    "worst_seconds": 0.0839,
-    "total_seconds": 0.1875,
+    "worst_seconds": 0.0755,
+    "total_seconds": 0.1575,
     "surfaces": [
       {
         "surface": "vector+keyword search",
         "visible_before": true,
         "visible_after": false,
         "ok": true,
-        "seconds_to_dark": 0.0839
+        "seconds_to_dark": 0.0755
       },
       {
         "surface": "result cache",
         "visible_before": true,
         "visible_after": false,
         "ok": true,
-        "seconds_to_dark": 0.0002
+        "seconds_to_dark": 0.0001
       },
       {
         "surface": "prompt context",
         "visible_before": true,
         "visible_after": false,
         "ok": true,
-        "seconds_to_dark": 0.0003
+        "seconds_to_dark": 0.0002
       },
       {
         "surface": "aggregates",
         "visible_before": true,
         "visible_after": false,
         "ok": true,
-        "seconds_to_dark": 0.0033
+        "seconds_to_dark": 0.0022
       },
       {
         "surface": "stratum membership",
         "visible_before": true,
         "visible_after": false,
         "ok": true,
-        "seconds_to_dark": 0.0033
+        "seconds_to_dark": 0.0018
       }
     ]
   },

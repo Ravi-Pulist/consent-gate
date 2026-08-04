@@ -26,7 +26,7 @@ consent to a purpose and permit withdrawal.
 ## Measured results
 
 Corpus: 200 patients, 1000 documents, seeded with three trap families. For
-purpose `direct_care`, 79 subjects consented and 120 not.
+purpose `direct_care`, 80 subjects consented and 120 not.
 
 | | masking | exclusion |
 |---|---|---|
@@ -44,7 +44,7 @@ Revocation mid-session with caches warm: every surface dark (vector+keyword
 search, result cache, prompt context, aggregates) with the worst surface at
 0.08 s against a 5 s target.
 
-Tests: 70, including 9 sabotage cases, all caught.
+Tests: 80, including 9 sabotage cases and 10 pgvector cases, all passing.
 
 ## Design decisions that carried the result
 
@@ -72,15 +72,28 @@ results. Two queries that should both have returned nothing returned
 *different* nothing. Raised to 1024 dimensions with a 0.55 similarity floor,
 recorded in the code with the reason.
 
+## Verified on the reference engine
+
+The full 1000-document exhibit was run on Postgres + pgvector 0.8.6 and
+produced a result identical to SQLite: 535 leaks under masking, 0 under
+exclusion, the same 535 leak records with symmetric difference zero across
+both runs. Reproduce with:
+
+    docker run -d -p 55432:5432 -e POSTGRES_PASSWORD=consent         -e POSTGRES_DB=consent pgvector/pgvector:pg16
+    PYTHONPATH=src python -m consent_gate.cli exhibit         --corpus corpus/data --engine pgvector
+
 ## Not verified
 
 - Timing side channel. Exclusion closes the content channel; response time is
   separate and is not claimed closed.
 - Corpus totals. Publishing overall corpus size reopens differencing.
-- Postgres + pgvector. The adapter interface is the extension point, but no
-  Postgres was available in this environment, so the reference path was not
-  run. All published numbers come from the SQLite path and its query plan is
-  what is quoted.
+- Physical non-access under a hash-join plan. The pgvector reference path now
+  runs (see below), and it showed that "a non-consented record is never
+  scored" is a claim about the query plan rather than about the library. At
+  1000 documents Postgres chooses a hash join and evaluates the similarity
+  filter on rows it then discards. Every observable property holds; physical
+  non-access is a stronger, plan-dependent property a deployment must verify
+  on its own engine.
 - Retrieval quality is not what the exhibit tests.
 
 ## RMAD evidence

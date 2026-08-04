@@ -49,6 +49,22 @@ def check(source: str, label: str, actual, expected) -> bool:
     return ok
 
 
+def check_at_least(source: str, label: str, actual: int, floor: int) -> bool:
+    """Assert a count has not shrunk, rather than pinning it exactly.
+
+    An exact test count false-alarms on every legitimate test addition, which
+    is how a verification script trains its reader to ignore it. The property
+    worth protecting is that the suite has not been gutted.
+    """
+    ok = actual >= floor
+    (PASSED if ok else FAILED).append(label)
+    print(f"  {'PASS' if ok else 'FAIL'}  [{source:8}] {label:<54} "
+          f"{actual!r} (floor {floor})")
+    if not ok:
+        print(f"        fewer than the {floor} recorded when this was written")
+    return ok
+
+
 def skip(source: str, label: str, why: str) -> None:
     SKIPPED.append(label)
     print(f"  SKIP  [{source:8}] {label:<54} {why}")
@@ -501,7 +517,7 @@ def tier_repo() -> None:
              f"pytest could not collect; {floor} test functions in source")
         skip("repo", "sabotage cases", "pytest could not collect")
         return
-    check("repo", "tests", sum(counted.values()), 70)
+    check_at_least("repo", "tests", sum(counted.values()), 70)
     check("repo", "sabotage cases", counted.get("test_sabotage.py", 0), 9)
 
     probes = ROOT / "src" / "consent_gate" / "probes.py"
@@ -568,8 +584,6 @@ def main(argv: list[str]) -> int:
     for figure, where in (
         ("byte-reproducibility of the corpus from seed 20260804",
          "corpus/generate.py, asserted by tests/test_corpus.py"),
-        ("Postgres + pgvector behaviour (no Postgres in this environment)",
-         "README.md, Not verified"),
         ("response-time channel",
          "README.md, Not verified; exhibits/exhibit.md, What this does not "
          "close"),
