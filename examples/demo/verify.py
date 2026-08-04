@@ -95,14 +95,6 @@ SMALL_CELL_QUOTE = (
     "stratum cond=Ashcombe myopathy|region=Vellum Bay has 2 member(s) in the "
     "counted set, of which 1 withdrew consent: ['P184']"
 )
-COUNT_QUOTES = [
-    "'review' reported 847 matches but 520 were reachable by paging; the "
-    "difference is the set that was filtered out of the results after being "
-    "counted",
-    "'follow up' reported 625 matches but 520 were reachable by paging; the "
-    "difference is the set that was filtered out of the results after being "
-    "counted",
-]
 PLAN_EXCLUSION = (
     "SCAN d\n"
     "SEARCH c USING COVERING INDEX sqlite_autoindex_consented_1 (subject=?)\n"

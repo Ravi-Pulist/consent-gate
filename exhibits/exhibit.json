@@ -3773,43 +3773,43 @@
     "subject": "P001",
     "purpose": "direct_care",
     "all_dark": true,
-    "worst_seconds": 0.0717,
-    "total_seconds": 0.1527,
+    "worst_seconds": 0.0839,
+    "total_seconds": 0.1875,
     "surfaces": [
       {
         "surface": "vector+keyword search",
         "visible_before": true,
         "visible_after": false,
         "ok": true,
-        "seconds_to_dark": 0.0717
+        "seconds_to_dark": 0.0839
       },
       {
         "surface": "result cache",
         "visible_before": true,
         "visible_after": false,
         "ok": true,
-        "seconds_to_dark": 0.0001
+        "seconds_to_dark": 0.0002
       },
       {
         "surface": "prompt context",
         "visible_before": true,
         "visible_after": false,
         "ok": true,
-        "seconds_to_dark": 0.0002
+        "seconds_to_dark": 0.0003
       },
       {
         "surface": "aggregates",
         "visible_before": true,
         "visible_after": false,
         "ok": true,
-        "seconds_to_dark": 0.0021
+        "seconds_to_dark": 0.0033
       },
       {
         "surface": "stratum membership",
         "visible_before": true,
         "visible_after": false,
         "ok": true,
-        "seconds_to_dark": 0.002
+        "seconds_to_dark": 0.0033
       }
     ]
   },
