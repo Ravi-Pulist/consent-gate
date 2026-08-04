@@ -43,9 +43,21 @@ def load_corpus(data_dir: Path) -> Corpus:
                   j("manifest.json"))
 
 
-def build(corpus: Corpus) -> tuple[ConsentStore, SqliteIndex]:
+def make_index(engine: str = "sqlite"):
+    """The retrieval engine under test.
+
+    Both adapters implement the same interface and are given the same corpus,
+    so the exhibit measures the enforcement boundary rather than the engine.
+    """
+    if engine == "pgvector":
+        from .adapters.pgvector_index import PgVectorIndex
+        return PgVectorIndex()
+    return SqliteIndex()
+
+
+def build(corpus: Corpus, engine: str = "sqlite"):
     store = ConsentStore()
-    index = SqliteIndex()
+    index = make_index(engine)
     for record in corpus.consents:
         store.record(Consent(
             subject=record["subject"],
@@ -58,13 +70,23 @@ def build(corpus: Corpus) -> tuple[ConsentStore, SqliteIndex]:
             scope=frozenset(record.get("scope", ())),
             version=record.get("version", 1)))
     by_patient = {p["patient_id"]: p for p in corpus.patients}
+    rows = []
     for doc in corpus.documents:
         p = by_patient.get(doc["patient_id"], {})
-        index.add(doc["doc_id"], doc["patient_id"], doc["text"],
-                  title=doc.get("title", ""),
-                  doc_type=doc.get("doc_type", ""),
-                  region=p.get("region", ""), condition=p.get("condition", ""),
-                  identifiers=doc.get("identifiers"))
+        rows.append({"doc_id": doc["doc_id"], "subject": doc["patient_id"],
+                     "text": doc["text"], "title": doc.get("title", ""),
+                     "doc_type": doc.get("doc_type", ""),
+                     "region": p.get("region", ""),
+                     "condition": p.get("condition", ""),
+                     "identifiers": doc.get("identifiers", [])})
+    if hasattr(index, "add_many"):
+        index.add_many(rows)          # one round trip per batch, not per row
+    else:
+        for r in rows:
+            index.add(r["doc_id"], r["subject"], r["text"], title=r["title"],
+                      doc_type=r["doc_type"], region=r["region"],
+                      condition=r["condition"],
+                      identifiers=r["identifiers"])
     return store, index
 
 
@@ -108,12 +130,14 @@ class Exhibit:
     purpose: str
     when: str
     counts: dict
+    engine: str = "sqlite"
 
 
-def run(data_dir: Path, purpose: Purpose = Purpose.DIRECT_CARE) -> Exhibit:
+def run(data_dir: Path, purpose: Purpose = Purpose.DIRECT_CARE,
+        engine: str = "sqlite") -> Exhibit:
     corpus = load_corpus(data_dir)
     when = datetime.fromisoformat(corpus.manifest["now"])
-    store, index = build(corpus)
+    store, index = build(corpus, engine)
 
     manifest = dict(corpus.manifest)
     manifest["narrative_traps"] = narrative_queries(corpus)
@@ -144,7 +168,7 @@ def run(data_dir: Path, purpose: Purpose = Purpose.DIRECT_CARE) -> Exhibit:
         drill=drill.as_dict(),
         plan_exclusion=index.explain("review", consented),
         plan_masking=index.explain("review", None),
-        purpose=purpose.value, when=when.isoformat(),
+        purpose=purpose.value, when=when.isoformat(), engine=engine,
         counts={"patients": len(corpus.patients),
                 "documents": len(corpus.documents),
                 "consented_subjects": len(consented),
@@ -282,7 +306,8 @@ def as_json(ex: Exhibit) -> dict:
                  "subject": x.subject, "doc_id": x.doc_id,
                  "evidence": x.evidence} for x in r.leaks]
     return {
-        "purpose": ex.purpose, "when": ex.when, "counts": ex.counts,
+        "purpose": ex.purpose, "when": ex.when, "engine": ex.engine,
+        "counts": ex.counts,
         "masking": {"probes_run": ex.masking.probes_run,
                     "total_leaks": len(ex.masking.leaks),
                     "by_vector": ex.masking.by_vector(),

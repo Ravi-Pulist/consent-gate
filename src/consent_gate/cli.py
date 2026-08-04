@@ -29,7 +29,8 @@ def _use_utf8() -> None:
 
 
 def cmd_exhibit(args) -> int:
-    ex = run(Path(args.corpus), Purpose.parse(args.purpose))
+    ex = run(Path(args.corpus), Purpose.parse(args.purpose),
+             engine=args.engine)
     if args.out:
         Path(args.out).parent.mkdir(parents=True, exist_ok=True)
         Path(args.out).write_text(markdown(ex), encoding="utf-8")
@@ -73,6 +74,10 @@ def build_parser() -> argparse.ArgumentParser:
     x = sub.add_parser("exhibit", help="run both configurations and diff them")
     x.add_argument("--corpus", default="corpus/data")
     x.add_argument("--purpose", default="direct_care")
+    x.add_argument("--engine", default="sqlite",
+                   choices=["sqlite", "pgvector"],
+                   help="pgvector is the reference path; needs a "
+                        "reachable Postgres with the extension")
     x.add_argument("--out")
     x.add_argument("--json")
     x.set_defaults(fn=cmd_exhibit)

@@ -1,7 +1,7 @@
 {
   "purpose": "direct_care",
   "when": "2026-08-04T00:00:00+00:00",
-  "engine": "sqlite",
+  "engine": "pgvector",
   "counts": {
     "patients": 200,
     "documents": 1000,
@@ -3774,48 +3774,48 @@
     "subject": "P001",
     "purpose": "direct_care",
     "all_dark": true,
-    "worst_seconds": 0.0755,
-    "total_seconds": 0.1575,
+    "worst_seconds": 0.0789,
+    "total_seconds": 0.2096,
     "surfaces": [
       {
         "surface": "vector+keyword search",
         "visible_before": true,
         "visible_after": false,
         "ok": true,
-        "seconds_to_dark": 0.0755
+        "seconds_to_dark": 0.0789
       },
       {
         "surface": "result cache",
         "visible_before": true,
         "visible_after": false,
         "ok": true,
-        "seconds_to_dark": 0.0001
+        "seconds_to_dark": 0.0003
       },
       {
         "surface": "prompt context",
         "visible_before": true,
         "visible_after": false,
         "ok": true,
-        "seconds_to_dark": 0.0002
+        "seconds_to_dark": 0.0006
       },
       {
         "surface": "aggregates",
         "visible_before": true,
         "visible_after": false,
         "ok": true,
-        "seconds_to_dark": 0.0022
+        "seconds_to_dark": 0.0116
       },
       {
         "surface": "stratum membership",
         "visible_before": true,
         "visible_after": false,
         "ok": true,
-        "seconds_to_dark": 0.0018
+        "seconds_to_dark": 0.011
       }
     ]
   },
   "query_plan": {
-    "exclusion": "SCAN d\nSEARCH c USING COVERING INDEX sqlite_autoindex_consented_1 (subject=?)\nUSE TEMP B-TREE FOR ORDER BY",
-    "masking": "SCAN d\nUSE TEMP B-TREE FOR ORDER BY"
+    "exclusion": "Limit  (cost=158.50..158.50 rows=1 width=136)\n  ->  Sort  (cost=158.50..159.36 rows=344 width=136)\n        Sort Key: (('1'::double precision - (d.vec <=> '[...1024 dims...]'::vector))) DESC, d.doc_id\n        ->  Hash Join  (cost=2.80..156.78 rows=344 width=136)\n              Hash Cond: (d.subject = c.subject)\n              ->  Seq Scan on documents d  (cost=0.00..149.96 rows=859 width=160)\n                    Filter: ((lower(text) ~~ '%review%'::text) OR (('1'::double precision - (vec <=> '[...1024 dims...]'::vector)) > '0.55'::double precision))\n              ->  Hash  (cost=1.80..1.80 rows=80 width=5)\n                    ->  Seq Scan on consented c  (cost=0.00..1.80 rows=80 width=5)",
+    "masking": "Limit  (cost=158.55..158.55 rows=1 width=136)\n  ->  Sort  (cost=158.55..160.70 rows=859 width=136)\n        Sort Key: (('1'::double precision - (vec <=> '[...1024 dims...]'::vector))) DESC, doc_id\n        ->  Seq Scan on documents d  (cost=0.00..154.25 rows=859 width=136)\n              Filter: ((lower(text) ~~ '%review%'::text) OR (('1'::double precision - (vec <=> '[...1024 dims...]'::vector)) > '0.55'::double precision))"
   }
 }

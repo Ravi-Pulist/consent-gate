@@ -80,28 +80,37 @@ Not applied to results afterwards. This is the engine's own plan for the query t
 
 **Exclusion**
 ```
-SCAN d
-SEARCH c USING COVERING INDEX sqlite_autoindex_consented_1 (subject=?)
-USE TEMP B-TREE FOR ORDER BY
+Limit  (cost=158.50..158.50 rows=1 width=136)
+  ->  Sort  (cost=158.50..159.36 rows=344 width=136)
+        Sort Key: (('1'::double precision - (d.vec <=> '[...1024 dims...]'::vector))) DESC, d.doc_id
+        ->  Hash Join  (cost=2.80..156.78 rows=344 width=136)
+              Hash Cond: (d.subject = c.subject)
+              ->  Seq Scan on documents d  (cost=0.00..149.96 rows=859 width=160)
+                    Filter: ((lower(text) ~~ '%review%'::text) OR (('1'::double precision - (vec <=> '[...1024 dims...]'::vector)) > '0.55'::double precision))
+              ->  Hash  (cost=1.80..1.80 rows=80 width=5)
+                    ->  Seq Scan on consented c  (cost=0.00..1.80 rows=80 width=5)
 ```
 
 **Masking** (no consent predicate exists to push down)
 ```
-SCAN d
-USE TEMP B-TREE FOR ORDER BY
+Limit  (cost=158.55..158.55 rows=1 width=136)
+  ->  Sort  (cost=158.55..160.70 rows=859 width=136)
+        Sort Key: (('1'::double precision - (vec <=> '[...1024 dims...]'::vector))) DESC, doc_id
+        ->  Seq Scan on documents d  (cost=0.00..154.25 rows=859 width=136)
+              Filter: ((lower(text) ~~ '%review%'::text) OR (('1'::double precision - (vec <=> '[...1024 dims...]'::vector)) > '0.55'::double precision))
 ```
 
 ## Revocation, measured
 
-Mid-session revocation of `P001` with caches warm. Every surface dark: **True**. Worst surface: **0.0755 s**.
+Mid-session revocation of `P001` with caches warm. Every surface dark: **True**. Worst surface: **0.0789 s**.
 
 | surface | visible before | visible after | seconds to dark |
 |---|---|---|---|
-| vector+keyword search | True | False | 0.0755 |
-| result cache | True | False | 0.0001 |
-| prompt context | True | False | 0.0002 |
-| aggregates | True | False | 0.0022 |
-| stratum membership | True | False | 0.0018 |
+| vector+keyword search | True | False | 0.0789 |
+| result cache | True | False | 0.0003 |
+| prompt context | True | False | 0.0006 |
+| aggregates | True | False | 0.0116 |
+| stratum membership | True | False | 0.0110 |
 
 > A surface that was never visible before revocation proves nothing about revocation, so it is not counted as a pass.
 
