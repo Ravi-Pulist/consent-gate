@@ -165,6 +165,13 @@ def probe_oracle(gate, manifest: dict, purpose: Purpose,
 
 
 # ── pagination and counts, which are oracles in their own right ─────────
+#: How far the pagination walk goes before giving up. A cap is necessary --
+#: a leaking configuration can report tens of thousands of matches -- but a
+#: capped walk must never be reported as a count leak, because the shortfall
+#: is then the probe's own.
+MAX_PAGES = 52
+
+
 def probe_pagination(gate, purpose: Purpose, when: datetime,
                      queries: list[str]) -> list[Leak]:
     """A page that comes back short marks where a record was removed."""
@@ -173,11 +180,18 @@ def probe_pagination(gate, purpose: Purpose, when: datetime,
         first = gate.search(q, purpose=purpose, at=when, page=0)
         if isinstance(first, dict) or first.error:
             continue
-        seen, page = 0, 0
+        seen, page, capped = 0, 0, False
         while True:
             r = gate.search(q, purpose=purpose, at=when, page=page)
             seen += len(r.hits)
-            if not r.has_more or page > 50:
+            if not r.has_more:
+                break
+            if page >= MAX_PAGES:
+                # The walk stopped because *this probe* gave up, not because
+                # the result set ran out. Any count mismatch from here on is
+                # the probe's own doing, and reporting it as a leak would be
+                # a fabricated finding dressed as a measurement.
+                capped = True
                 break
             if len(r.hits) < r.page_size:
                 leaks.append(Leak(
@@ -188,6 +202,9 @@ def probe_pagination(gate, purpose: Purpose, when: datetime,
                               "a removed record")))
                 break
             page += 1
+
+        if capped:
+            continue
         if seen and first.count != seen:
             leaks.append(Leak(
                 "count", q,

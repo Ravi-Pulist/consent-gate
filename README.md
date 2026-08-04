@@ -38,11 +38,10 @@ difference answers "is this person in your data?"
 | | masking | exclusion |
 |---|---|---|
 | probes run | 113 | 113 |
-| **total leaks** | **537** | **0** |
+| **total leaks** | **535** | **0** |
 | narrative | 489 | 0 |
 | oracle | 30 | 0 |
 | small cell | 16 | 0 |
-| count / pagination | 2 | 0 |
 
 Revocation, measured mid-session with caches warm: every surface dark —
 vector path, keyword path, aggregates, result cache, prompt context — in
@@ -124,7 +123,7 @@ query.
 
 ## Verified
 
-- 537 leaks under masking, 0 under exclusion, on 113 probes over the
+- 535 leaks under masking, 0 under exclusion, on 113 probes over the
   published corpus.
 - Byte-identical responses for all 30 oracle pairs under exclusion: a
   withdrawn record and a record that never existed produce the same response

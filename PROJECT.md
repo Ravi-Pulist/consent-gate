@@ -31,11 +31,10 @@ purpose `direct_care`, 79 subjects consented and 120 not.
 | | masking | exclusion |
 |---|---|---|
 | probes run | 113 | 113 |
-| total leaks | 537 | 0 |
+| total leaks | 535 | 0 |
 | narrative | 489 | 0 |
 | oracle | 30 | 0 |
 | small cell | 16 | 0 |
-| count / pagination | 2 | 0 |
 
 The masking baseline redacts every direct identifier at 100% recall, possible
 only because the corpus is synthetic and every offset is known. Every leak
@@ -98,3 +97,23 @@ recorded in the code with the reason.
   its EXPLAIN beside the SQLite one.
 - Measure the timing channel on the oracle pairs and publish the distribution
   whichever way it comes out.
+
+## Defects the demo build found in the exhibit
+
+Three, all in the reporting rather than the enforcement, all fixed:
+
+1. The consented-subject count was snapshotted after the revocation drill had
+   already revoked a subject, so the corpus description read 79 + 120 = 199 of
+   200 patients. The drill's own revocation was leaking into the summary.
+2. Two of the reported leaks were fabricated by the probe. The pagination walk
+   stopped at its own 52-page cap and then reported the resulting shortfall as
+   a count-channel leak. A shortfall caused by the probe giving up is the
+   probe's, not the system's; the cap is now named and a capped walk reports
+   nothing. Masking total 537 -> 535.
+3. The revocation drill was called without a stratum, so its `aggregates`
+   surface returned "dark" without ever consulting the gate. A surface that
+   measures nothing must not sit in a table of measurements looking like a
+   pass. The drill now reports five genuinely measured surfaces.
+
+None of the three touched the enforcement path or the exclusion result, which
+stayed at zero leaks throughout.

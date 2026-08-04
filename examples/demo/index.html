@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>consent-gate: exclusion, not masking</title>
+<style>
+:root {
+  color-scheme: light dark;
+  --plane:      #f9f9f7;
+  --surface:    #fcfcfb;
+  --sunk:       #f2f1ec;
+  --ink:        #0b0b0b;
+  --ink-2:      #52514e;
+  --muted:      #898781;
+  --grid:       #e1e0d9;
+  --rule:       rgba(11,11,11,0.10);
+  --good:       #0ca30c;
+  --warning:    #fab219;
+  --critical:   #d03b3b;
+  --code-bg:    #f2f1ec;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --plane:    #0d0d0d;
+    --surface:  #1a1a19;
+    --sunk:     #141413;
+    --ink:      #ffffff;
+    --ink-2:    #c3c2b7;
+    --muted:    #918f88;
+    --grid:     #2c2c2a;
+    --rule:     rgba(255,255,255,0.12);
+    --code-bg:  #141413;
+  }
+}
+
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+  margin: 0;
+  max-width: 100%;
+  background: var(--plane);
+  color: var(--ink);
+  font: 16px/1.6 system-ui, -apple-system, "Segoe UI", sans-serif;
+  overflow-wrap: break-word;
+}
+/* grid and flex children default to min-width:auto, which lets one long
+   token push the page wider than the viewport. Everything wide on this page
+   scrolls inside its own container instead. */
+.kpis > *, .split > *, .pair > * { min-width: 0; }
+.wrap { max-width: 64rem; margin: 0 auto; padding: 0 clamp(1rem, 4vw, 2.5rem) 5rem; }
+
+h1 { font-size: clamp(1.6rem, 5vw, 2.3rem); line-height: 1.2; margin: 0 0 .5rem; letter-spacing: -0.02em; }
+h2 {
+  font-size: clamp(1.15rem, 3.2vw, 1.4rem); line-height: 1.25; letter-spacing: -0.01em;
+  margin: 3.25rem 0 .25rem; padding-top: 1.75rem; border-top: 1px solid var(--rule);
+}
+h3 { font-size: 1rem; margin: 2rem 0 .4rem; letter-spacing: .01em; }
+h4 { font-size: .82rem; margin: 0 0 .5rem; color: var(--muted); font-weight: 600;
+     text-transform: uppercase; letter-spacing: .08em; }
+p  { margin: .7rem 0; max-width: 46rem; }
+ul { max-width: 46rem; padding-left: 1.2rem; }
+li { margin: .4rem 0; }
+.lede { font-size: 1.05rem; color: var(--ink-2); max-width: 42rem; }
+.kicker {
+  font-size: .72rem; text-transform: uppercase; letter-spacing: .12em;
+  color: var(--muted); font-weight: 600; margin: 0 0 .35rem;
+}
+.note { font-size: .85rem; color: var(--muted); max-width: 46rem; }
+.src { font-size: .78rem; color: var(--muted); margin: .35rem 0 1.25rem; max-width: 46rem;
+       font-family: ui-monospace, "Cascadia Mono", Consolas, monospace; }
+code, .mono { font-family: ui-monospace, "Cascadia Mono", Consolas, monospace; font-size: .875em; }
+code { background: var(--code-bg); padding: .1em .35em; border-radius: 3px; }
+.num { font-variant-numeric: tabular-nums; }
+strong { font-weight: 650; }
+
+header { padding: clamp(2.5rem, 8vw, 4.5rem) 0 0; }
+.synthetic {
+  display: block; margin: 1.5rem 0 0; padding: .6rem .85rem;
+  background: var(--surface); border: 1px solid var(--rule);
+  border-left: 3px solid var(--warning); border-radius: 3px;
+  font-size: .85rem; color: var(--ink-2); max-width: 46rem;
+}
+
+.kpis { display: grid; gap: .75rem; grid-template-columns: repeat(auto-fit, minmax(10.5rem, 1fr)); margin: 1.75rem 0 .5rem; }
+.kpi { background: var(--surface); border: 1px solid var(--rule); border-radius: 6px; padding: .9rem 1rem; }
+.kpi .label { font-size: .72rem; color: var(--muted); text-transform: uppercase; letter-spacing: .08em; }
+.kpi .value { font-size: clamp(1.6rem, 5vw, 2rem); line-height: 1.1; margin: .3rem 0 .15rem; font-variant-numeric: tabular-nums; }
+.kpi .of { font-size: .78rem; color: var(--ink-2); }
+
+.tw { overflow-x: auto; margin: .5rem 0 1rem; border: 1px solid var(--rule); border-radius: 6px; background: var(--surface); }
+table { border-collapse: collapse; width: 100%; font-size: .875rem; min-width: 26rem; }
+.tw.prose table { min-width: 0; }
+th, td { text-align: left; padding: .5rem .8rem; border-bottom: 1px solid var(--grid); vertical-align: top; }
+thead th { font-size: .72rem; text-transform: uppercase; letter-spacing: .07em; color: var(--muted); font-weight: 600; white-space: nowrap; }
+tbody tr:last-child td { border-bottom: 0; }
+td.n, th.n { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
+td.m { font-family: ui-monospace, "Cascadia Mono", Consolas, monospace; white-space: nowrap; }
+tr.flag td { background: rgba(208,59,59,0.07); }
+.tfoot { font-size: .8rem; color: var(--muted); margin: -.4rem 0 1.5rem; max-width: 46rem; }
+
+.chip {
+  display: inline-flex; align-items: center; gap: .4rem; white-space: nowrap;
+  font-size: .74rem; font-weight: 600;
+  padding: .05rem .5rem .05rem .4rem; border: 1px solid var(--rule);
+  border-radius: 999px; background: var(--surface); color: var(--ink);
+}
+.chip::before { content: ""; width: .5rem; height: .5rem; border-radius: 50%; flex: none; }
+.chip.ok::before   { background: var(--good); }
+.chip.bad::before  { background: var(--critical); }
+.chip.warn::before { background: var(--warning); }
+
+.split { display: grid; gap: 1rem; grid-template-columns: 1fr; margin: 1rem 0; }
+@media (min-width: 60rem) { .split { grid-template-columns: 1fr 1fr; } }
+.panel { background: var(--surface); border: 1px solid var(--rule); border-radius: 6px; padding: .9rem 1rem; }
+.panel > :first-child { margin-top: 0; }
+.panel > :last-child { margin-bottom: 0; }
+.panel .tw { border: 0; border-radius: 0; margin: 0 -1rem; background: transparent; }
+.panel table { min-width: 22rem; }
+.panel-bad  { border-left: 3px solid var(--critical); }
+.panel-good { border-left: 3px solid var(--good); }
+/* on a phone the five result columns are tightened until they fit, because a
+   consent column the reader has to scroll sideways to reach is the one column
+   that has to be visible */
+@media (max-width: 34rem) {
+  .panel table { min-width: 0; font-size: .75rem; }
+  .panel th, .panel td { padding: .45rem .28rem; }
+  .panel .chip { font-size: .66rem; padding: .05rem .32rem .05rem .24rem; gap: .26rem; border: 0; }
+  .panel .chip::before { width: .42rem; height: .42rem; }
+}
+.count { font-size: .82rem; color: var(--ink-2); font-variant-numeric: tabular-nums; margin: 0 0 .6rem; }
+
+pre {
+  margin: .5rem 0; padding: .8rem .9rem; background: var(--code-bg);
+  border: 1px solid var(--rule); border-radius: 6px;
+  overflow-x: auto; font-family: ui-monospace, "Cascadia Mono", Consolas, monospace;
+  font-size: .82rem; line-height: 1.5;
+}
+pre.wrapped { white-space: pre-wrap; overflow-x: visible; overflow-wrap: anywhere; }
+/* the quoted record soft-wraps rather than scrolling: the point of it is the
+   sentence, and a reader on a phone should not have to scroll to reach it */
+pre.doc { white-space: pre-wrap; overflow-x: visible; }
+pre .mask { color: var(--critical); font-weight: 650; }
+pre .tell { border-bottom: 2px solid var(--warning); }
+
+blockquote {
+  margin: .75rem 0; padding: .1rem 0 .1rem 1rem;
+  border-left: 3px solid var(--rule); color: var(--ink);
+  max-width: 46rem; font-size: .95rem;
+}
+blockquote + .src { margin-top: -.4rem; }
+
+.pair { display: grid; gap: 1rem; grid-template-columns: 1fr; margin: 1rem 0; }
+@media (min-width: 48rem) { .pair { grid-template-columns: 1fr 1fr; } }
+.fp { font-family: ui-monospace, "Cascadia Mono", Consolas, monospace;
+      font-size: .72rem; overflow-x: auto; white-space: nowrap;
+      padding-bottom: .2rem; color: var(--ink-2); }
+.dl { display: grid; grid-template-columns: auto 1fr; gap: .2rem .8rem; font-size: .85rem; margin: .5rem 0 0; }
+.dl dt { color: var(--muted); }
+.dl dd { margin: 0; font-family: ui-monospace, "Cascadia Mono", Consolas, monospace; font-size: .95em; }
+
+footer { border-top: 1px solid var(--rule); margin-top: 3.5rem; padding-top: 1.5rem;
+         font-size: .85rem; color: var(--muted); }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <p class="kicker">consent-gate / measured demo</p>
+  <h1>Consent as exclusion, not masking</h1>
+  <p class="lede">A retrieval system over patient records. The team says it respects
+  consent, because it masks identifiers. Masking answers a different question: it
+  hides <em>who</em>, and consent governs <em>whether</em>. This page is the gap
+  between the two, measured on the same corpus with the same probes under both
+  configurations.</p>
+  <p class="synthetic">Everything here is synthetic. 200 invented patients,
+  1,000 generated notes, <code>MRN-ZZ-</code> identifiers, 555-01xx telephone
+  numbers and <code>.invalid</code> email domains, produced by
+  <code>corpus/generate.py</code> from seed <code>20260804</code>. No real
+  patient data enters this project, and none is needed to show the failure.</p>
+</header>
+
+<div class="kpis">
+  <div class="kpi"><div class="label">leaks, masking</div>
+    <div class="value">537</div><div class="of">113 probes</div></div>
+  <div class="kpi"><div class="label">leaks, exclusion</div>
+    <div class="value">0</div><div class="of">same probes, same corpus</div></div>
+  <div class="kpi"><div class="label">revocation, worst surface</div>
+    <div class="value">0.08 s</div><div class="of">against a 5 s target</div></div>
+  <div class="kpi"><div class="label">tests</div>
+    <div class="value">70</div><div class="of">9 sabotage cases, all caught</div></div>
+</div>
+<p class="src">exhibits/exhibit.json: masking.total_leaks, exclusion.total_leaks,
+masking.probes_run, revocation_drill.worst_seconds. Test counts: pytest collection over tests/.</p>
+
+<h2>One query, two configurations</h2>
+<p>The query below is taken from a consented patient's own note (P001, seeded trap
+<code>D0003</code>) with every identifier surface removed from the query text, so
+the masking baseline is given its best case: this is a story query, not a name
+query.</p>
+
+<pre class="wrapped">Larkspur, as the ward has called them since childhood, is 48 and still working as a salt panner on the Aldermoor shorefr</pre>
+<p class="src">live replay, re-derived by verify.py: exhibit.narrative_queries() over corpus/data, trap D0003</p>
+
+<div class="split">
+  <div class="panel panel-bad">
+    <h4>Masking: retrieve everything, redact identifiers</h4>
+    <p class="count">533 matches. Page 1 of 54.</p>
+    <div class="tw">
+      <table>
+        <thead><tr><th class="n">#</th><th>document</th><th>subject</th><th class="n">score</th><th>consent</th></tr></thead>
+        <tbody>
+          <tr><td class="n">1</td><td class="m">D0003</td><td class="m">P001</td><td class="n">0.4050</td><td><span class="chip ok">consented</span></td></tr>
+          <tr><td class="n">2</td><td class="m">D0004</td><td class="m">P001</td><td class="n">0.3988</td><td><span class="chip ok">consented</span></td></tr>
+          <tr><td class="n">3</td><td class="m">D0155</td><td class="m">P030</td><td class="n">0.2624</td><td><span class="chip ok">consented</span></td></tr>
+          <tr><td class="n">4</td><td class="m">D0997</td><td class="m">P200</td><td class="n">0.2548</td><td><span class="chip ok">consented</span></td></tr>
+          <tr class="flag"><td class="n">5</td><td class="m">D0683</td><td class="m">P138</td><td class="n">0.2537</td><td><span class="chip bad">revoked</span></td></tr>
+          <tr class="flag"><td class="n">6</td><td class="m">D0637</td><td class="m">P127</td><td class="n">0.2508</td><td><span class="chip bad">other purpose</span></td></tr>
+          <tr><td class="n">7</td><td class="m">D0895</td><td class="m">P179</td><td class="n">0.2494</td><td><span class="chip ok">consented</span></td></tr>
+          <tr class="flag"><td class="n">8</td><td class="m">D0543</td><td class="m">P110</td><td class="n">0.2450</td><td><span class="chip bad">other purpose</span></td></tr>
+          <tr><td class="n">9</td><td class="m">D0930</td><td class="m">P185</td><td class="n">0.2393</td><td><span class="chip ok">consented</span></td></tr>
+          <tr class="flag"><td class="n">10</td><td class="m">D0248</td><td class="m">P050</td><td class="n">0.2370</td><td><span class="chip bad">not yet valid</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="panel panel-good">
+    <h4>Exclusion: consent inside the candidate set</h4>
+    <p class="count">204 matches. Page 1 of 21.</p>
+    <div class="tw">
+      <table>
+        <thead><tr><th class="n">#</th><th>document</th><th>subject</th><th class="n">score</th><th>consent</th></tr></thead>
+        <tbody>
+          <tr><td class="n">1</td><td class="m">D0003</td><td class="m">P001</td><td class="n">0.4050</td><td><span class="chip ok">consented</span></td></tr>
+          <tr><td class="n">2</td><td class="m">D0004</td><td class="m">P001</td><td class="n">0.3988</td><td><span class="chip ok">consented</span></td></tr>
+          <tr><td class="n">3</td><td class="m">D0155</td><td class="m">P030</td><td class="n">0.2624</td><td><span class="chip ok">consented</span></td></tr>
+          <tr><td class="n">4</td><td class="m">D0997</td><td class="m">P200</td><td class="n">0.2548</td><td><span class="chip ok">consented</span></td></tr>
+          <tr><td class="n">5</td><td class="m">D0895</td><td class="m">P179</td><td class="n">0.2494</td><td><span class="chip ok">consented</span></td></tr>
+          <tr><td class="n">6</td><td class="m">D0930</td><td class="m">P185</td><td class="n">0.2393</td><td><span class="chip ok">consented</span></td></tr>
+          <tr><td class="n">7</td><td class="m">D0113</td><td class="m">P022</td><td class="n">0.2347</td><td><span class="chip ok">consented</span></td></tr>
+          <tr><td class="n">8</td><td class="m">D0771</td><td class="m">P155</td><td class="n">0.2319</td><td><span class="chip ok">consented</span></td></tr>
+          <tr><td class="n">9</td><td class="m">D0617</td><td class="m">P124</td><td class="n">0.2263</td><td><span class="chip ok">consented</span></td></tr>
+          <tr><td class="n">10</td><td class="m">D0550</td><td class="m">P111</td><td class="n">0.2182</td><td><span class="chip ok">consented</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+<p class="src">live replay, re-derived by verify.py: MaskingGate and QueryGate over corpus/data at 2026-08-04T00:00:00+00:00, purpose direct_care</p>
+
+<p>Four of the ten rows on the masked page belong to people with no active consent
+for direct care, and they fail in four different ways. P138's only consent was
+revoked on 2025-08-02. P127 and P110 consented to research, not to direct care.
+P050's direct-care consent begins on 2026-08-21, seventeen days after the instant
+being queried. A system that treats consent as a flag on a record gets all four
+of these wrong in the same way.</p>
+
+<p>Under exclusion those records are not in the candidate set, so positions 5, 6, 8
+and 10 are filled by the next consented documents rather than left short. The count
+changes with them, 533 to 204, because the count is computed over the consented
+corpus and no other total exists to be differenced.</p>
+
+<h3>What the model would have been handed</h3>
+<p>This is row 5 as the masking configuration returns it. Name, MRN, telephone,
+email and address are all gone, replaced at 100% recall.</p>
+
+<pre class="doc">Laboratory report
+Patient: <span class="mask">[NAME]</span>
+MRN: <span class="mask">[MRN]</span>
+Phone: <span class="mask">[PHONE]</span>
+Email: <span class="mask">[EMAIL]</span>
+Address: <span class="mask">[ADDRESS]</span>
+Encounter date: 2024-11-02
+Record type: lab_report
+
+This contact was a scheduled review of Harrowfield anaemia. <span class="tell">Beacon</span>, as the ward has called them since childhood, is <span class="tell">42</span> and still working as a <span class="tell">lock keeper</span> on the <span class="tell">Cinderfell</span> shorefront. Transport support was offered and declined for the next appointment. Bloods were repeated and the trend since the last review is unchanged. Plan: repeat bloods before the next appointment, otherwise unchanged.</pre>
+<p class="src">live replay, re-derived by verify.py: MaskingGate hit D0683. Body text also recorded verbatim at exhibits/exhibit.json masking.leaks[0].evidence</p>
+
+<p>Nickname, age, occupation and place. The manifest records this patient as
+<code>P138</code>, consent state <code>revoked</code>, and lists exactly those four
+quasi-identifiers as the seeded trap. One sentence, one person, after a perfect
+masker has run. Two of the four non-consented documents on that page
+(<code>D0683</code>, <code>D0543</code>) are seeded traps; the other two
+(<code>D0637</code>, <code>D0248</code>) are ordinary generated notes that leaked
+anyway.</p>
+<p class="src">corpus/data/manifest.json: narrative_traps entry for D0683 (nickname Beacon, age 42, lock keeper, Cinderfell, consent_state revoked)</p>
+
+<h2>The measured difference</h2>
+<p>Same corpus, same 113 probes, run against both configurations. Nothing is
+measured under exclusion that was not measured under masking first.</p>
+
+<div class="tw">
+  <table>
+    <thead><tr><th>leak vector</th><th class="n">masking</th><th class="n">exclusion</th><th>what the probe reads</th></tr></thead>
+    <tbody>
+      <tr><td>narrative</td><td class="n">489</td><td class="n">0</td><td>a returned document whose subject has no active consent</td></tr>
+      <tr><td>oracle</td><td class="n">30</td><td class="n">0</td><td>response fingerprint for a present token against an absent token</td></tr>
+      <tr><td>small cell</td><td class="n">16</td><td class="n">0</td><td>membership of a counted stratum</td></tr>
+      <tr><td>count / pagination</td><td class="n">2</td><td class="n">0</td><td>reported total against what paging can reach</td></tr>
+      <tr><td><strong>total leaks</strong></td><td class="n"><strong>537</strong></td><td class="n"><strong>0</strong></td><td>113 probes each side</td></tr>
+    </tbody>
+  </table>
+</div>
+<p class="tfoot">Corpus: 200 patients, 1,000 documents. For purpose <code>direct_care</code>
+at 2026-08-04T00:00:00+00:00, 79 subjects are consented and 120 are not. Those two
+figures are one apart from the corpus total for a reason recorded under
+<a href="#limits">what this does not close</a>.</p>
+<p class="src">exhibits/exhibit.json: masking.by_vector, exclusion.by_vector, counts. Probe counts re-derived from corpus/data/manifest.json: 60 traps + 20 small cells + 30 oracle pairs + 3 paging queries = 113.</p>
+
+<p>The masking baseline is not a straw man. It redacts every direct identifier at
+100% recall, which is possible only because the corpus is synthetic and all 5,000
+identifier offsets are known (5 per document, across 1,000 documents). Every leak
+above survives a perfect masker. A real NER masker also misses identifiers
+outright, so this understates the failure rather than exaggerating it.</p>
+
+<h2>The narrative leak, quoted</h2>
+<p>489 leak events across 60 probes, involving 59 distinct documents and 26
+distinct people. Three of them, verbatim from the exhibit:</p>
+
+<blockquote>This contact was a scheduled review of Harrowfield anaemia. Beacon,
+as the ward has called them since childhood, is 42 and still working as a lock
+keeper on the Cinderfell shorefront.</blockquote>
+<p class="src">exhibits/exhibit.json masking.leaks[0]: subject P138, doc D0683, probe D0003</p>
+
+<blockquote>The encounter covered ongoing management of Sable-tract colitis and
+nothing further. Wick, as the ward has called them since childhood, is 32 and
+still working as a cartwright on the Bramleigh shorefront.</blockquote>
+<p class="src">exhibits/exhibit.md, third narrative quote: subject P110, doc D0543, probe D0003</p>
+
+<blockquote>stratum cond=Ashcombe myopathy|region=Vellum Bay has 2 member(s) in
+the counted set, of which 1 withdrew consent: ['P184']</blockquote>
+<p class="src">exhibits/exhibit.json, first small_cell leak: subject P184</p>
+
+<p>The last one is the small-cell vector: it does not matter that the record was
+masked, because it was <em>counted</em>, and the count is the disclosure. Five of
+the sixteen small-cell leaks are strata containing exactly one person, where the
+count alone names them.</p>
+
+<h2>The search oracle</h2>
+<p>A hit, a count, even an empty result set is information about who is in the
+index. The corpus seeds 30 pairs: one token that appears in exactly one
+non-consented record, and one token that appears nowhere at all. If the two
+responses differ in any observable way, the index answers the question
+"is this person in your data".</p>
+
+<div class="pair">
+  <div class="panel panel-bad">
+    <h4>Masking</h4>
+    <dl class="dl">
+      <dt>present token</dt><dd>ZZORACLE-010-kejr</dd>
+      <dt>response</dt><dd>1 match, 1 hit (masked)</dd>
+      <dt>absent token</dt><dd>ZZORACLE-010-vbbs</dd>
+      <dt>response</dt><dd>0 matches, 0 hits</dd>
+    </dl>
+    <p class="note" style="margin-top:.6rem">SHA-256 of each response over hits, count, page, page size, has-more, error:</p>
+    <p class="fp">0a5abcd39ea90bcc46033d6323413ae88a1dda5dd02ba013b4566283a238b79a<br>
+                  009ffefc0e4a378bebb8a7e0ad3b3397d082f70f349e469be012da717e9c4ff8</p>
+    <p class="note">Different. The record was redacted and still answered. 30 of 30 pairs distinguishable.</p>
+  </div>
+  <div class="panel panel-good">
+    <h4>Exclusion</h4>
+    <dl class="dl">
+      <dt>present token</dt><dd>ZZORACLE-010-kejr</dd>
+      <dt>response</dt><dd>0 matches, 0 hits</dd>
+      <dt>absent token</dt><dd>ZZORACLE-010-vbbs</dd>
+      <dt>response</dt><dd>0 matches, 0 hits</dd>
+    </dl>
+    <p class="note" style="margin-top:.6rem">SHA-256 of each response over hits, count, page, page size, has-more, error:</p>
+    <p class="fp">009ffefc0e4a378bebb8a7e0ad3b3397d082f70f349e469be012da717e9c4ff8<br>
+                  009ffefc0e4a378bebb8a7e0ad3b3397d082f70f349e469be012da717e9c4ff8</p>
+    <p class="note">Identical. A withdrawn record and a record that never existed are the same response. 0 of 30 pairs distinguishable.</p>
+  </div>
+</div>
+<p class="src">live replay, re-derived by verify.py: manifest oracle_pairs[0] (doc D0018, patient P004, consent state never) through both gates. Leak totals from exhibits/exhibit.json masking.by_vector.oracle = 30, exclusion 0.</p>
+
+<blockquote>querying a token unique to a withdrawn record returned 1 match(es)
+and 1 hit(s); querying a token that exists nowhere returned 0 match(es) and 0
+hit(s). The two are distinguishable, so the index answers questions about who is
+in it.</blockquote>
+<p class="src">exhibits/exhibit.json, first oracle leak: probe ZZORACLE-010-kejr</p>
+
+<h2>Why post-filtering does not work</h2>
+<p>The tempting implementation is to retrieve normally and drop non-consented
+records from the results. It leaks on three surfaces at once, and each one is a
+working oracle.</p>
+
+<div class="tw prose">
+  <table>
+    <thead><tr><th>surface</th><th>how post-filtering leaks</th></tr></thead>
+    <tbody>
+      <tr><td>counts</td><td>"1,204 matches, showing 8". The 1,204 was computed over everyone, including the withdrawn. The number is the disclosure.</td></tr>
+      <tr><td>scores</td><td>ranks and any normalisation are computed over the full set, so the shape of the surviving scores shifts with what was removed.</td></tr>
+      <tr><td>pagination</td><td>a short page, or offset arithmetic that skips, marks exactly where a record was removed.</td></tr>
+    </tbody>
+  </table>
+</div>
+<p class="src">src/consent_gate/gate.py module docstring</p>
+
+<p>There is a correctness cost too: top-k-then-filter returns fewer than k, and
+over-fetching to compensate makes the retrieval budget depend on how many hidden
+records exist, which is another oracle built to fix the first one. The rule that
+resolves all of it: <strong>exclusion is a property of the candidate set, not of
+the result set.</strong></p>
+
+<p><code>tests/test_sabotage.py</code> implements post-filtering deliberately, as a
+gate that retrieves over everyone and then drops the non-consented hits, and
+asserts the probe suite catches it. It does. No forbidden document is returned,
+and the oracle probe still fires, because the response carries a count computed
+before the drop.</p>
+<p class="src">tests/test_sabotage.py, test_post_filtering_instead_of_exclusion_is_caught</p>
+
+<h2>The predicate is inside the query plan</h2>
+<p>Not applied to results afterwards. This is the engine's own plan for the query
+that ran, which a reader can check rather than take on trust.
+<code>SqliteIndex.explain()</code> prints it for any query.</p>
+
+<div class="split">
+  <div class="panel panel-good">
+    <h4>Exclusion</h4>
+<pre>SCAN d
+SEARCH c USING COVERING INDEX sqlite_autoindex_consented_1 (subject=?)
+USE TEMP B-TREE FOR ORDER BY</pre>
+    <p class="note"><code>c</code> is the consented subject set, joined into the scan.</p>
+  </div>
+  <div class="panel panel-bad">
+    <h4>Masking</h4>
+<pre>SCAN d
+USE TEMP B-TREE FOR ORDER BY</pre>
+    <p class="note">No consent predicate exists to push down. Everything is scanned, then redacted.</p>
+  </div>
+</div>
+<p class="src">exhibits/exhibit.json query_plan.exclusion and query_plan.masking</p>
+
+<h2>Revocation, measured</h2>
+<p>Mid-session revocation of <code>P001</code> with the caches already warm, which
+is the only version of this test that means anything. Caches are stamped with the
+consent version of every subject they depend on, so revocation makes stale entries
+unreadable rather than merely scheduled for eviction.</p>
+
+<div class="tw">
+  <table>
+    <thead><tr><th>surface</th><th>visible before</th><th>visible after</th><th class="n">seconds to dark</th></tr></thead>
+    <tbody>
+      <tr><td>vector + keyword search</td><td>yes</td><td>no</td><td class="n">0.0799</td></tr>
+      <tr><td>result cache</td><td>yes</td><td>no</td><td class="n">0.0001</td></tr>
+      <tr><td>prompt context</td><td>yes</td><td>no</td><td class="n">0.0002</td></tr>
+      <tr><td>aggregates</td><td>yes</td><td>no</td><td class="n">0.0000</td></tr>
+    </tbody>
+  </table>
+</div>
+<p class="tfoot">Every surface dark. Worst surface 0.0799 s against a 5 s target;
+0.16 s for the whole drill. A surface that was never visible before revocation
+proves nothing about revocation, so it is not counted as a pass. See the note on
+the aggregates row under <a href="#limits">what this does not close</a>.</p>
+<p class="src">exhibits/exhibit.json revocation_drill. Timings are wall-clock on the machine that ran the exhibit and will differ on yours.</p>
+
+<h2 id="limits">What this does not close</h2>
+<p>Three limits carried over from the project README, and three things found while
+building this page. Each names the file that records it.</p>
+
+<h3>Carried from the README</h3>
+<ul>
+  <li><strong>Timing.</strong> Exclusion closes the content channel. Response time
+  is a separate channel and is not claimed closed here. Measuring it is scoped
+  work, not a checkbox.</li>
+  <li><strong>Postgres and pgvector were not run.</strong> The adapter interface is
+  the extension point and the reference path is specified, but no Postgres was
+  available in this environment. Every number on this page came from the SQLite
+  path, and the SQLite plan is the one quoted above. Claiming a pgvector result
+  without running it would be the vendor behaviour this project exists to
+  oppose.</li>
+  <li><strong>Corpus totals.</strong> If overall corpus size is published,
+  consented-count changes leak consent <em>events</em> by differencing. This gate
+  exposes no totals; a deployment that does reopens the channel.</li>
+  <li><strong>Retrieval quality</strong> is not what the exhibit tests. Embeddings
+  are a deterministic hashed bag of words so a sceptic can reproduce the run
+  without downloading a model. Swapping in a real embedding model does not change
+  where the consent predicate is applied, which is the claim.</li>
+  <li><strong>Differential privacy for aggregates</strong> is a different tool for
+  a different problem: exclusion fixes membership, DP perturbs values. Compatible,
+  out of scope.</li>
+</ul>
+<p class="src">README.md, Not verified. Also exhibits/exhibit.md, What this does not close.</p>
+
+<h3>Found while building this page</h3>
+<ul>
+  <li><strong>79 consented and 120 not do not add to 200.</strong> The exhibit
+  takes its consented count after the revocation drill has already revoked
+  <code>P001</code>, while the non-consented set was computed before it. At the
+  measured instant the split is 80 and 120. The leak measurements used the
+  pre-drill split, so they are unaffected; the reported count is one low.
+  <span class="note">src/consent_gate/exhibit.py, counts computed after
+  run_drill; src/consent_gate/revocation.py, store.revoke inside the drill.
+  Re-derived by verify.py.</span></li>
+  <li><strong>The two count-channel leaks are attributed to the wrong cause.</strong>
+  The evidence string says the gap is the set filtered out after being counted. In
+  this run the page walk stopped at the probe's 52-page limit: masking reports 847
+  matches for <code>review</code> and 520 were walked before the cap, against 326
+  reported and 326 walked under exclusion. The channel is real, since 847 is a
+  total over everyone and 326 is not, but the sentence describing it is wrong.
+  <span class="note">src/consent_gate/probes.py, probe_pagination page cap.
+  Re-derived by verify.py.</span></li>
+  <li><strong>The aggregates row of the drill is not a membership test.</strong>
+  The drill was called without a stratum, so that surface's check returns false
+  without consulting the gate and its 0.0000 s measures nothing. The three other
+  surfaces are real measurements, and the worst-surface figure comes from the
+  search surface, so the headline is unaffected.
+  <span class="note">src/consent_gate/revocation.py, the aggregates measure with
+  stratum unset.</span></li>
+</ul>
+
+<h2>Reproduce it</h2>
+<p>From the repository root. <code>src/consent_gate</code> imports the standard
+library only; pytest is needed for the test suite and nothing else is:</p>
+
+<pre>export PYTHONPATH=src
+python corpus/generate.py
+python -m consent_gate.cli exhibit --corpus corpus/data \
+    --out exhibits/exhibit.md --json exhibits/exhibit.json
+python -m pytest -q
+python examples/demo/verify.py</pre>
+
+<p>Corpus generation is deterministic and byte-reproducible from seed
+<code>20260804</code>; the manifest carries the generator's own SHA-256
+(<code>482304f5...</code>). The leak counts, query plans and fingerprints are
+deterministic too: running all four commands into a scratch copy of this
+repository reproduced the corpus byte for byte, and the re-run exhibit differed
+from the published one in three fields, all of them revocation timings. Those
+are wall-clock measurements and will differ on your machine; everything else on
+this page will not.</p>
+
+<p>The exhibit exits <code>0</code> if exclusion leaked nothing, <code>1</code> if
+it leaked, and <code>2</code> if it could not run, including the case where the
+masking baseline leaked nothing, because that means the corpus has no traps in it
+and a green run would be green for the wrong reason.</p>
+
+<p><code>examples/demo/verify.py</code> re-derives every figure on this page from
+<code>exhibits/exhibit.json</code>, <code>corpus/data/manifest.json</code>, a live
+replay of the query through both gates, and the test collection, then prints a
+pass/fail tally. It reports 108 of 108 checks passing on this checkout, and lists
+the three figures it cannot check.</p>
+
+<footer>
+  <p>consent-gate. Synthetic data throughout. Every figure on this page traces to
+  <code>exhibits/exhibit.json</code>, <code>corpus/data/manifest.json</code>, a
+  replay of the recorded query, or a named source file.</p>
+</footer>
+
+</div>
+</body>
+</html>

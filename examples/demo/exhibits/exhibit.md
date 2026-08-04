@@ -5,12 +5,13 @@ Same corpus. Same queries. Two configurations. The only difference is where cons
 | | masking | exclusion |
 |---|---|---|
 | probes run | 113 | 113 |
-| **total leaks** | **535** | **0** |
+| **total leaks** | **537** | **0** |
+| count leaks | 2 | 0 |
 | narrative leaks | 489 | 0 |
 | oracle leaks | 30 | 0 |
 | small_cell leaks | 16 | 0 |
 
-Corpus: 200 patients, 1000 documents. For purpose `direct_care` at 2026-08-04T00:00:00+00:00, 80 subjects are consented and 120 are not.
+Corpus: 200 patients, 1000 documents. For purpose `direct_care` at 2026-08-04T00:00:00+00:00, 79 subjects are consented and 120 are not.
 
 > The masking configuration masks every direct identifier at **100% recall**, which is only possible because the corpus is synthetic and every identifier's offset is known. Every leak below survives a perfect masker. A real NER masker also misses identifiers outright, so this understates the failure.
 
@@ -93,15 +94,14 @@ USE TEMP B-TREE FOR ORDER BY
 
 ## Revocation, measured
 
-Mid-session revocation of `P001` with caches warm. Every surface dark: **True**. Worst surface: **0.0717 s**.
+Mid-session revocation of `P001` with caches warm. Every surface dark: **True**. Worst surface: **0.0799 s**.
 
 | surface | visible before | visible after | seconds to dark |
 |---|---|---|---|
-| vector+keyword search | True | False | 0.0717 |
+| vector+keyword search | True | False | 0.0799 |
 | result cache | True | False | 0.0001 |
 | prompt context | True | False | 0.0002 |
-| aggregates | True | False | 0.0021 |
-| stratum membership | True | False | 0.0020 |
+| aggregates | True | False | 0.0000 |
 
 > A surface that was never visible before revocation proves nothing about revocation, so it is not counted as a pass.
 

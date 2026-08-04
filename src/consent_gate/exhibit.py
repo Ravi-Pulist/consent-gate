@@ -128,11 +128,17 @@ def run(data_dir: Path, purpose: Purpose = Purpose.DIRECT_CARE) -> Exhibit:
     result_exclusion = run_all(exclusion, manifest, purpose, when, hidden,
                                page_queries)
 
+    # The consented set is snapshotted *before* the drill, which revokes a
+    # subject. Reading it afterwards reported 79 consented against 120 not,
+    # summing to 199 of 200 patients — the drill's own revocation leaking
+    # into the corpus description.
+    consented = store.consented_subjects(purpose, when)
+
     subject = _drill_subject(store, corpus, purpose, when)
     drill = run_drill(CachedGate(QueryGate(store, index)), store, subject,
-                      _drill_query(corpus, subject), purpose, when)
+                      _drill_query(corpus, subject), purpose, when,
+                      stratum=_drill_stratum(corpus, subject))
 
-    consented = store.consented_subjects(purpose, when)
     return Exhibit(
         masking=result_masking, exclusion=result_exclusion,
         drill=drill.as_dict(),
@@ -151,6 +157,20 @@ def _drill_subject(store, corpus, purpose, when) -> str:
         if p["patient_id"] in consented:
             return p["patient_id"]
     return corpus.patients[0]["patient_id"]
+
+
+def _drill_stratum(corpus, subject: str) -> str | None:
+    """The stratum the drill subject belongs to.
+
+    Passing this matters: without it the drill's `aggregates` surface never
+    consults the gate at all, so it reports "dark" without having checked
+    anything. A surface that measures nothing must not sit in a table of
+    measurements looking like a pass.
+    """
+    for p in corpus.patients:
+        if p["patient_id"] == subject:
+            return f"cond={p.get('condition', '')}|region={p.get('region', '')}"
+    return None
 
 
 def _drill_query(corpus, subject) -> str:

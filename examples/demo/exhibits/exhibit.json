@@ -4,16 +4,17 @@
   "counts": {
     "patients": 200,
     "documents": 1000,
-    "consented_subjects": 80,
+    "consented_subjects": 79,
     "non_consented_subjects": 120
   },
   "masking": {
     "probes_run": 113,
-    "total_leaks": 535,
+    "total_leaks": 537,
     "by_vector": {
       "narrative": 489,
       "small_cell": 16,
-      "oracle": 30
+      "oracle": 30,
+      "count": 2
     },
     "leaks": [
       {
@@ -3760,6 +3761,20 @@
         "subject": "P198",
         "doc_id": "D0985",
         "evidence": "querying a token unique to a withdrawn record returned 1 match(es) and 1 hit(s); querying a token that exists nowhere returned 0 match(es) and 0 hit(s). The two are distinguishable, so the index answers questions about who is in it."
+      },
+      {
+        "vector": "count",
+        "probe_id": "review",
+        "subject": "",
+        "doc_id": "",
+        "evidence": "'review' reported 847 matches but 520 were reachable by paging; the difference is the set that was filtered out of the results after being counted"
+      },
+      {
+        "vector": "count",
+        "probe_id": "follow up",
+        "subject": "",
+        "doc_id": "",
+        "evidence": "'follow up' reported 625 matches but 520 were reachable by paging; the difference is the set that was filtered out of the results after being counted"
       }
     ]
   },
@@ -3773,15 +3788,15 @@
     "subject": "P001",
     "purpose": "direct_care",
     "all_dark": true,
-    "worst_seconds": 0.0717,
-    "total_seconds": 0.1527,
+    "worst_seconds": 0.0799,
+    "total_seconds": 0.16,
     "surfaces": [
       {
         "surface": "vector+keyword search",
         "visible_before": true,
         "visible_after": false,
         "ok": true,
-        "seconds_to_dark": 0.0717
+        "seconds_to_dark": 0.0799
       },
       {
         "surface": "result cache",
@@ -3802,14 +3817,7 @@
         "visible_before": true,
         "visible_after": false,
         "ok": true,
-        "seconds_to_dark": 0.0021
-      },
-      {
-        "surface": "stratum membership",
-        "visible_before": true,
-        "visible_after": false,
-        "ok": true,
-        "seconds_to_dark": 0.002
+        "seconds_to_dark": 0.0
       }
     ]
   },
